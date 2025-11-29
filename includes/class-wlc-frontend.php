@@ -9,23 +9,23 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_Frontend {
-    public static function init() {
-        add_shortcode( 'lead_chatbot', array( __CLASS__, 'chatbot_ui' ) );
-        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
-        add_action( 'wp_footer', array( __CLASS__, 'floating_widget' ) );
+class NPLEADCHAT_Frontend {
+    public static function npleadchat_init() {
+        add_shortcode( 'nplead_chatbot', array( __CLASS__, 'npleadchatbot_ui' ) );
+        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'npleadchat_enqueue' ) );
+        add_action( 'wp_footer', array( __CLASS__, 'npleadfloating_widget' ) );
     }
 
-    public static function enqueue() {
-        wp_enqueue_style( 'wlc-frontend', WLC_URL . 'assets/css/chatbot.css', array(), WLC_VERSION );
-        wp_enqueue_script( 'wlc-frontend-js', WLC_URL . 'assets/js/chatbot.js', array(), WLC_VERSION, true );
+    public static function npleadchat_enqueue() {
+        wp_enqueue_style( 'wlc-frontend', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
+        wp_enqueue_script( 'wlc-frontend-js', NPLEADCHAT_URL . 'assets/js/chatbot.js', array(), NPLEADCHAT_VERSION, true );
         wp_localize_script( 'wlc-frontend-js', 'wlc_api', array(
             'url'   => esc_url_raw( rest_url( 'wlc/v1/lead' ) ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
         ) );
     }
 
-    public static function chatbot_ui() {
+    public static function npleadchatbot_ui() {
         ob_start(); ?>
 
         <div id="wlc-chatbot">
@@ -51,11 +51,11 @@ class WLC_Frontend {
         <?php return ob_get_clean();
     }
 
-    public static function floating_widget() {
+    public static function npleadfloating_widget() {
         echo '<div id="wlc-floating-btn">💬</div>';
         echo '<div id="wlc-chat-popup">';
             echo '<span id="wlc-chat-close">×</span>';
-            echo do_shortcode("[lead_chatbot]");
+            echo do_shortcode("[nplead_chatbot]");
         echo '</div>';
     }
 }

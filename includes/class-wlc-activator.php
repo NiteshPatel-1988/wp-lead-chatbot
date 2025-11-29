@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_Activator {
-    public static function activate() {
-        require_once WLC_DIR . 'includes/class-wlc-db.php';
-        WLC_DB::create_table();
+class NPLEADCHAT_Activator {
+    public static function npleadchat_activate() {
+        require_once NPLEADCHAT_DIR . 'includes/class-wlc-db.php';
+        NPLEADCHAT_DB::npleadchat_create_table();
     }
 }

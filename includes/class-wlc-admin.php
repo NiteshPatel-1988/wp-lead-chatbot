@@ -9,26 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_Admin {
-    public static function init() {
-        add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
-        add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
+class NPLEADCHAT_Admin {
+    public static function npleadchat_init() {
+        add_action( 'admin_menu', array( __CLASS__, 'npleadchat_admin_menu' ) );
+        add_action( 'admin_enqueue_scripts', array( __CLASS__, 'npleadchat_enqueue' ) );
     }
 
-    public static function enqueue( $hook ) {
-        wp_enqueue_style( 'wlc-admin', WLC_URL . 'assets/css/chatbot.css', array(), WLC_VERSION );
+    public static function npleadchat_enqueue( $hook ) {
+        wp_enqueue_style( 'wlc-admin', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
     }
 
-    public static function admin_menu() {
-        add_menu_page( esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), 'manage_options', 'wlc-leads', array( __CLASS__, 'render_page' ), 'dashicons-format-chat' );
+    public static function npleadchat_admin_menu() {
+        add_menu_page( esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), 'manage_options', 'wlc-leads', array( __CLASS__, 'npleadchat_render_page' ), 'dashicons-format-chat' );
     }
 
-    public static function render_page() {
+    public static function npleadchat_render_page() {
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_die( esc_html__( 'Insufficient permissions', 'np-lead-chatbot' ) );
         }
 
-        $leads = WLC_DB::get_leads();
+        $leads = NPLEADCHAT_DB::npleadchat_get_leads();
         ?>
         <div class="wrap">
             <h1><?php echo esc_html__( 'Leads', 'np-lead-chatbot' ); ?></h1>

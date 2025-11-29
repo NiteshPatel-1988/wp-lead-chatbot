@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_DB {
-    public static function create_table() {
+class NPLEADCHAT_DB {
+    public static function npleadchat_create_table() {
         global $wpdb;
         $table = $wpdb->prefix . 'wlc_leads';
         $charset_collate = $wpdb->get_charset_collate();
@@ -29,14 +29,14 @@ class WLC_DB {
         dbDelta( $sql );
     }
 
-    public static function insert_lead( $data = array() ) {
+    public static function npleadchat_insert_lead( $data = array() ) {
         global $wpdb;
-        $table = $wpdb->esc_sql( $wpdb->prefix . 'wlc_leads' );
+        $table = esc_sql( $wpdb->prefix . 'wlc_leads' );
         $wpdb->insert( $table, $data );
         return $wpdb->insert_id;
     }
 
-    public static function get_leads() {
+    public static function npleadchat_get_leads() {
         global $wpdb;
         $table = $wpdb->prefix . 'wlc_leads'; 
         $table = esc_sql( $table ); // sanitize table name

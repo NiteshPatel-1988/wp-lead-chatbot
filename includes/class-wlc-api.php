@@ -9,25 +9,25 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_API {
-    public static function init() {
-        add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
+class NPLEADCHAT_API {
+    public static function npleadchat_init() {
+        add_action( 'rest_api_init', array( __CLASS__, 'npleadchat_register_routes' ) );
     }
 
-    public static function register_routes() {
+    public static function npleadchat_register_routes() {
         register_rest_route( 'wlc/v1', '/lead', array(
             'methods'  => 'POST',
-            'callback' => array( __CLASS__, 'handle_lead' ),
-            'permission_callback' => array( __CLASS__, 'permission_check' ),
+            'callback' => array( __CLASS__, 'npleadchat_handle_lead' ),
+            'permission_callback' => array( __CLASS__, 'npleadchat_permission_check' ),
         ) );
     }
 
-    public static function permission_check( $request ) {
+    public static function npleadchat_permission_check( $request ) {
         $nonce = isset($_SERVER['HTTP_X_WP_NONCE'])? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) ) : '';
         return wp_verify_nonce( $nonce, 'wp_rest' );
     }
 
-    public static function handle_lead( $request ) {
+    public static function npleadchat_handle_lead( $request ) {
         $params = $request->get_json_params();
 
         $name = isset( $params['name'] ) ? sanitize_text_field( $params['name'] ) : '';
@@ -47,7 +47,7 @@ class WLC_API {
             'date' => current_time( 'mysql' ),
         );
 
-        $id = WLC_DB::insert_lead( $data );
+        $id = NPLEADCHAT_DB::npleadchat_insert_lead( $data );
 
         if ( $id ) {
             return rest_ensure_response( array( 'success' => true, 'message' => __( 'Lead saved', 'np-lead-chatbot' ), 'id' => $id ) );

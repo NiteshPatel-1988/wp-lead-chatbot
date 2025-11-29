@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class WLC_Deactivator {
-    public static function deactivate() {
+class NPLEADCHAT_Deactivator {
+    public static function npleadchat_deactivate() {
         // No transient cleanup required currently.
     }
 }
