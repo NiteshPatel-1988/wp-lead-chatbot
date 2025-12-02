@@ -15,7 +15,7 @@ class NPLEADCHAT_API {
     }
 
     public static function npleadchat_register_routes() {
-        register_rest_route( 'wlc/v1', '/lead', array(
+        register_rest_route( 'npleadchat/v1', '/lead', array(
             'methods'  => 'POST',
             'callback' => array( __CLASS__, 'npleadchat_handle_lead' ),
             'permission_callback' => array( __CLASS__, 'npleadchat_permission_check' ),

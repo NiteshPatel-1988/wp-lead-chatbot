@@ -10,7 +10,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 global $wpdb;
-$table = $wpdb->prefix . 'wlc_leads';
+$table = $wpdb->prefix . 'npleadchat_leads';
 $sql = $wpdb->prepare(
     "DROP TABLE IF EXISTS `%i`",
     $table

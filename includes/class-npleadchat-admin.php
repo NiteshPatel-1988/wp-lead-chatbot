@@ -16,11 +16,11 @@ class NPLEADCHAT_Admin {
     }
 
     public static function npleadchat_enqueue( $hook ) {
-        wp_enqueue_style( 'wlc-admin', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
+        wp_enqueue_style( 'npleadchat-admin', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
     }
 
     public static function npleadchat_admin_menu() {
-        add_menu_page( esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), 'manage_options', 'wlc-leads', array( __CLASS__, 'npleadchat_render_page' ), 'dashicons-format-chat' );
+        add_menu_page( esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), esc_html__( 'NP Lead Chatbot', 'np-lead-chatbot' ), 'manage_options', 'npleadchat-leads', array( __CLASS__, 'npleadchat_render_page' ), 'dashicons-format-chat' );
     }
 
     public static function npleadchat_render_page() {

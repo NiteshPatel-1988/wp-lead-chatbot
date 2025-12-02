@@ -27,12 +27,12 @@ define( 'NPLEADCHAT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NPLEADCHAT_URL', plugin_dir_url( __FILE__ ) );
 
 // Include core files
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-activator.php';
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-deactivator.php';
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-admin.php';
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-frontend.php';
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-api.php';
-require_once NPLEADCHAT_DIR . 'includes/class-wlc-db.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-activator.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-deactivator.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-admin.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-frontend.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-api.php';
+require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-db.php';
 
 // Activation/Deactivation hooks
 register_activation_hook( __FILE__, array( 'NPLEADCHAT_Activator', 'npleadchat_activate' ) );
@@ -40,7 +40,7 @@ register_deactivation_hook( __FILE__, array( 'NPLEADCHAT_Deactivator', 'npleadch
 
 // Initialize admin and frontend
 add_action( 'init', function() {
-    // REST route registration handled in class-wlc-api on init
+    // REST route registration handled in class-npleadchat-api on init
     if ( is_admin() ) {
         NPLEADCHAT_Admin::npleadchat_init();
     }

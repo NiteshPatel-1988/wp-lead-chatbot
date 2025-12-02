@@ -56,12 +56,12 @@ jQuery(document).ready(function($){
         };
 
         $.ajax({
-            url: wlc_api.url,
+            url: npleadchat_api.url,
             method: "POST",
             data: JSON.stringify(data),
             contentType: "application/json",
             beforeSend: function(xhr){
-                xhr.setRequestHeader("X-WP-Nonce", wlc_api.nonce);
+                xhr.setRequestHeader("X-WP-Nonce", npleadchat_api.nonce);
             },
             success: function(res){
                 $('#wlc-response').text(res.message);

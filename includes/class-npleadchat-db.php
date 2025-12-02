@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class NPLEADCHAT_DB {
     public static function npleadchat_create_table() {
         global $wpdb;
-        $table = $wpdb->prefix . 'wlc_leads';
+        $table = $wpdb->prefix . 'npleadchat_leads';
         $charset_collate = $wpdb->get_charset_collate();
         $sql = "";
         $sql .= "CREATE TABLE {$table} (";
@@ -31,14 +31,14 @@ class NPLEADCHAT_DB {
 
     public static function npleadchat_insert_lead( $data = array() ) {
         global $wpdb;
-        $table = esc_sql( $wpdb->prefix . 'wlc_leads' );
+        $table = esc_sql( $wpdb->prefix . 'npleadchat_leads' );
         $wpdb->insert( $table, $data );
         return $wpdb->insert_id;
     }
 
     public static function npleadchat_get_leads() {
         global $wpdb;
-        $table = $wpdb->prefix . 'wlc_leads'; 
+        $table = $wpdb->prefix . 'npleadchat_leads'; 
         $table = esc_sql( $table ); // sanitize table name
         $sql = "SELECT * FROM {$table} ORDER BY id DESC";
         return $wpdb->get_results( $sql ); 

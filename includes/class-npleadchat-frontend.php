@@ -11,21 +11,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class NPLEADCHAT_Frontend {
     public static function npleadchat_init() {
-        add_shortcode( 'nplead_chatbot', array( __CLASS__, 'npleadchatbot_ui' ) );
+        add_shortcode( 'npleadchat', array( __CLASS__, 'npleadchat_bot_ui' ) );
         add_action( 'wp_enqueue_scripts', array( __CLASS__, 'npleadchat_enqueue' ) );
         add_action( 'wp_footer', array( __CLASS__, 'npleadfloating_widget' ) );
     }
 
     public static function npleadchat_enqueue() {
-        wp_enqueue_style( 'wlc-frontend', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
-        wp_enqueue_script( 'wlc-frontend-js', NPLEADCHAT_URL . 'assets/js/chatbot.js', array(), NPLEADCHAT_VERSION, true );
-        wp_localize_script( 'wlc-frontend-js', 'wlc_api', array(
-            'url'   => esc_url_raw( rest_url( 'wlc/v1/lead' ) ),
+        wp_enqueue_style( 'npleadchat-frontend', NPLEADCHAT_URL . 'assets/css/chatbot.css', array(), NPLEADCHAT_VERSION );
+        wp_enqueue_script( 'npleadchat-frontend-js', NPLEADCHAT_URL . 'assets/js/chatbot.js', array(), NPLEADCHAT_VERSION, true );
+        wp_localize_script( 'npleadchat-frontend-js', 'npleadchat_api', array(
+            'url'   => esc_url_raw( rest_url( 'npleadchat/v1/lead' ) ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
         ) );
     }
 
-    public static function npleadchatbot_ui() {
+    public static function npleadchat_bot_ui() {
         ob_start(); ?>
 
         <div id="wlc-chatbot">
@@ -55,7 +55,7 @@ class NPLEADCHAT_Frontend {
         echo '<div id="wlc-floating-btn">💬</div>';
         echo '<div id="wlc-chat-popup">';
             echo '<span id="wlc-chat-close">×</span>';
-            echo do_shortcode("[nplead_chatbot]");
+            echo do_shortcode("[npleadchat]");
         echo '</div>';
     }
 }
