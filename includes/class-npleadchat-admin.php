@@ -28,39 +28,28 @@ class NPLEADCHAT_Admin {
             wp_die( esc_html__( 'Insufficient permissions', 'np-lead-chatbot' ) );
         }
 
-        $leads = NPLEADCHAT_DB::npleadchat_get_leads();
-        ?>
-        <div class="wrap">
-            <h1><?php echo esc_html__( 'Leads', 'np-lead-chatbot' ); ?></h1>
-            <table class="widefat fixed striped">
-                <thead>
-                    <tr>
-                        <th><?php echo esc_html__( 'ID', 'np-lead-chatbot' ); ?></th>
-                        <th><?php echo esc_html__( 'Name', 'np-lead-chatbot' ); ?></th>
-                        <th><?php echo esc_html__( 'Email', 'np-lead-chatbot' ); ?></th>
-                        <th><?php echo esc_html__( 'Phone', 'np-lead-chatbot' ); ?></th>
-                        <th><?php echo esc_html__( 'Message', 'np-lead-chatbot' ); ?></th>
-                        <th><?php echo esc_html__( 'Date', 'np-lead-chatbot' ); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php if ( ! empty( $leads ) ) : ?>
-                    <?php foreach ( $leads as $lead ) : ?>
-                        <tr>
-                            <td><?php echo esc_html( $lead->id ); ?></td>
-                            <td><?php echo esc_html( $lead->name ); ?></td>
-                            <td><?php echo esc_html( $lead->email ); ?></td>
-                            <td><?php echo esc_html( $lead->phone ); ?></td>
-                            <td><?php echo esc_html( $lead->message ); ?></td>
-                            <td><?php echo esc_html( $lead->date ); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr><td colspan="6"><?php echo esc_html__( 'No leads found.', 'np-lead-chatbot' ); ?></td></tr>
-                <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-        <?php
+        require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-leads-table.php';
+
+    $table = new NPLEADCHAT_Leads_Table();
+    $table->prepare_items();
+    ?>
+
+    <div class="wrap">
+        <h1><?php esc_html_e( 'Leads', 'np-lead-chatbot' ); ?></h1>
+
+        <form method="post">
+            <input type="hidden" name="page" value="npleadchat-leads" />
+
+            <?php
+            wp_nonce_field( 'bulk-' . $table->_args['plural'] );
+
+            $table->search_box( __( 'Search Leads', 'np-lead-chatbot' ), 'npleadchat-search' );
+            $table->display();
+            ?>
+        </form>
+      
+    </div>
+
+    <?php
     }
 }

@@ -65,6 +65,10 @@ jQuery(document).ready(function($){
             },
             success: function(res){
                 $('#wlc-response').text(res.message);
+                $('#wlc-name').val('');
+                $('#wlc-email').val('');
+                $('#wlc-phone').val('');
+                $('#wlc-message').val('');
             },
             error: function(err){
                 console.error(err);

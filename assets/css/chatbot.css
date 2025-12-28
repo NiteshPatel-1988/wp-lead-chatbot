@@ -59,3 +59,9 @@
     color: #444;
     margin-right: 5px;
 }
+#wlc-chatbot .wlc-error{
+    color:red;
+}
+#wlc-chatbot #wlc-response{
+    color:darkgreen;
+}

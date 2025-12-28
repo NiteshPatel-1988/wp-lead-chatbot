@@ -36,11 +36,31 @@ class NPLEADCHAT_DB {
         return $wpdb->insert_id;
     }
 
-    public static function npleadchat_get_leads() {
+    public static function npleadchat_get_leads( $orderby = 'date', $order = 'DESC', $search = '' ) {
         global $wpdb;
-        $table = $wpdb->prefix . 'npleadchat_leads'; 
-        $table = esc_sql( $table ); // sanitize table name
-        $sql = "SELECT * FROM {$table} ORDER BY id DESC";
-        return $wpdb->get_results( $sql ); 
-    }
+
+        $allowed_orderby = [ 'name', 'date' ];
+        if ( ! in_array( $orderby, $allowed_orderby, true ) ) {
+            $orderby = 'date';
+        }
+
+        $order = ( strtoupper( $order ) === 'ASC' ) ? 'ASC' : 'DESC';
+
+        $where = '';
+
+        if ( ! empty( $search ) ) {
+            $like = '%' . $wpdb->esc_like( $search ) . '%';
+            $where = $wpdb->prepare(
+                "WHERE name LIKE %s OR email LIKE %s OR phone LIKE %s OR message LIKE %s",
+                $like,
+                $like,
+                $like,
+                $like
+            );
+        }
+
+        return $wpdb->get_results(
+            "SELECT * FROM {$wpdb->prefix}npleadchat_leads $where ORDER BY $orderby $order"
+        );
+    }    
 }

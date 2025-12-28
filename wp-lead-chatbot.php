@@ -2,7 +2,7 @@
 /**
  * Plugin Name: NP Lead Chatbot
  * Description: A lead generation chatbot plugin.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: NitsPatel
  * Author URI: https://github.com/NiteshPatel-1988
  * Text Domain: np-lead-chatbot
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'NPLEADCHAT_PLUGIN_FILE', __FILE__ );
-define( 'NPLEADCHAT_VERSION', '1.0.0' );
+define( 'NPLEADCHAT_VERSION', '1.1.0' );
 define( 'NPLEADCHAT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NPLEADCHAT_URL', plugin_dir_url( __FILE__ ) );
 

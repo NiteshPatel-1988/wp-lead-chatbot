@@ -4,7 +4,7 @@ Tags: chatbot, lead generation, contact, form, WordPress
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,15 +33,22 @@ Basic customization is possible via the plugin settings in the admin dashboard.
 
 == Screenshots ==
 1. Chatbot widget on front-end
-2. Lead collection table in admin
+2. Admin Lead listing with bulk actions, search, and sorting.
 
 == Changelog ==
+= 1.1.0 =
+* Added color customization for frontend success and error messages.
+* Added bulk actions support in admin listing.
+* Added search functionality in admin listing.
+* Added column sorting functionality in admin listing.
+* Improved UI and performance.
+
 = 1.0.0 =
 * Initial release with lead capture and admin display of leads.
 
 == Upgrade Notice ==
-= 1.0.0 =
-Initial release.
+= 1.1.0 =
+Added frontend success/error message color options and improved admin listing features.
 
 == License ==
 This plugin is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 or later.

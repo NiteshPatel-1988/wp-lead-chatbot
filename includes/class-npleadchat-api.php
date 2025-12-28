@@ -50,7 +50,7 @@ class NPLEADCHAT_API {
         $id = NPLEADCHAT_DB::npleadchat_insert_lead( $data );
 
         if ( $id ) {
-            return rest_ensure_response( array( 'success' => true, 'message' => __( 'Lead saved', 'np-lead-chatbot' ), 'id' => $id ) );
+            return rest_ensure_response( array( 'success' => true, 'message' => __( 'Lead saved.', 'np-lead-chatbot' ), 'id' => $id ) );
         }
 
         return rest_ensure_response( array( 'success' => false, 'message' => __( 'Could not save lead', 'np-lead-chatbot' ) ) );
