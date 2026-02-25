@@ -2,9 +2,9 @@
 Contributors: NitsPatel
 Tags: chatbot, lead generation, contact, form, WordPress
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,9 @@ NP Lead Chatbot is a simple plugin that lets you:
 == Features ==
 * Capture leads directly from a chatbot interface.
 * Store chat and lead data in custom tables and display it in the admin panel.
+* Export leads as CSV
+* Secure and lightweight
+
 
 Ideal for businesses that want a straightforward lead collection system via a chatbot.
 
@@ -33,9 +36,14 @@ Basic customization is possible via the plugin settings in the admin dashboard.
 
 == Screenshots ==
 1. Chatbot widget on front-end
-2. Admin Lead listing with bulk actions, search, and sorting.
+2. Admin Lead listing with bulk actions, search, export leads, and sorting.
 
 == Changelog ==
+= 1.2.0 =
+* Added Export Leads (CSV) feature in admin panel
+* Improved admin UI
+* Minor performance improvements
+
 = 1.1.0 =
 * Added color customization for frontend success and error messages.
 * Added bulk actions support in admin listing.
@@ -47,6 +55,9 @@ Basic customization is possible via the plugin settings in the admin dashboard.
 * Initial release with lead capture and admin display of leads.
 
 == Upgrade Notice ==
+= 1.2.0 =
+* Added Export Leads (CSV) feature in admin panel
+
 = 1.1.0 =
 Added frontend success/error message color options and improved admin listing features.
 

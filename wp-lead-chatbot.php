@@ -2,14 +2,14 @@
 /**
  * Plugin Name: NP Lead Chatbot
  * Description: A lead generation chatbot plugin.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: NitsPatel
  * Author URI: https://github.com/NiteshPatel-1988
  * Text Domain: np-lead-chatbot
  * Domain Path: /languages
  * Requires PHP: 7.4
  * Requires at least: 6.0
- * Tested up to: 6.8
+ * Tested up to: 6.9.1
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * 
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'NPLEADCHAT_PLUGIN_FILE', __FILE__ );
-define( 'NPLEADCHAT_VERSION', '1.1.0' );
+define( 'NPLEADCHAT_VERSION', '1.2.0' );
 define( 'NPLEADCHAT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NPLEADCHAT_URL', plugin_dir_url( __FILE__ ) );
 
