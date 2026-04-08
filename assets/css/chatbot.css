@@ -1,67 +1,526 @@
-#wlc-chatbot {
-    border: 1px solid #ddd;
-    padding: 20px;
-    /*width: 350px;*/
-    background: #fff;
-    border-radius: 8px;
+/* =============================================
+   NP Lead Chatbot — Professional UI v2.0
+   ============================================= */
+
+/* Local font — no external requests, GDPR-safe */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans-latin-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
-#wlc-chatbot input,#wlc-chatbot textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans-latin-500-normal.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
-#wlc-chatbot button {
-    background: #0073aa;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-}
-/* Floating button */
-#wlc-floating-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #0073aa;
-    color: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    z-index: 9999;
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../fonts/dm-sans-latin-600-normal.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
 }
 
-/* Chat popup */
+/* ------ CSS Variables ------ */
+:root {
+    --nlc-primary:        #4f46e5;
+    --nlc-primary-dark:   #3730a3;
+    --nlc-primary-light:  #818cf8;
+    --nlc-accent:         #06b6d4;
+    --nlc-surface:        #ffffff;
+    --nlc-surface-2:      #f8f8fb;
+    --nlc-border:         #e5e4f0;
+    --nlc-text:           #1e1b3a;
+    --nlc-text-muted:     #6b6887;
+    --nlc-error:          #ef4444;
+    --nlc-error-bg:       #fef2f2;
+    --nlc-success:        #10b981;
+    --nlc-success-bg:     #ecfdf5;
+    --nlc-radius:         14px;
+    --nlc-radius-sm:      8px;
+    --nlc-shadow:         0 20px 60px rgba(79,70,229,0.18), 0 4px 16px rgba(0,0,0,0.08);
+    --nlc-font:           'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --nlc-transition:     0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --nlc-width:          360px;
+}
+
+/* ====================================================
+   FLOATING TRIGGER BUTTON
+   ==================================================== */
+
+#wlc-floating-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--nlc-primary) 0%, var(--nlc-accent) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 99998;
+    box-shadow: 0 6px 24px rgba(79,70,229,0.45), 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform var(--nlc-transition), box-shadow var(--nlc-transition);
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#wlc-floating-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 10px 32px rgba(79,70,229,0.55), 0 4px 12px rgba(0,0,0,0.14);
+}
+
+#wlc-floating-btn:active {
+    transform: scale(0.96);
+}
+
+/* Ping animation when idle */
+#wlc-floating-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--nlc-primary), var(--nlc-accent));
+    animation: nlc-ping 2.4s ease-out infinite;
+    z-index: -1;
+}
+
+@keyframes nlc-ping {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    70%  { transform: scale(1.55);opacity: 0; }
+    100% { transform: scale(1.55);opacity: 0; }
+}
+
+#wlc-floating-btn .nlc-icon {
+    width: 26px;
+    height: 26px;
+    transition: transform var(--nlc-transition), opacity var(--nlc-transition);
+}
+
+#wlc-floating-btn .nlc-icon-close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+    transition: transform var(--nlc-transition), opacity var(--nlc-transition);
+}
+
+#wlc-floating-btn.is-open .nlc-icon-chat {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+}
+
+#wlc-floating-btn.is-open .nlc-icon-close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* ====================================================
+   CHAT POPUP CONTAINER
+   ==================================================== */
+
 #wlc-chat-popup {
     display: none;
     position: fixed;
     bottom: 100px;
-    right: 25px;
-    width: 350px;
+    right: 28px;
+    width: var(--nlc-width);
+    background: var(--nlc-surface);
+    border-radius: var(--nlc-radius);
+    box-shadow: var(--nlc-shadow);
+    z-index: 99997;
+    overflow: hidden;
+    font-family: var(--nlc-font);
+    border: 1px solid var(--nlc-border);
+    transform-origin: bottom right;
+}
+
+#wlc-chat-popup.nlc-open {
+    animation: nlc-popup-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#wlc-chat-popup.nlc-closing {
+    animation: nlc-popup-out 0.2s ease-in forwards;
+}
+
+@keyframes nlc-popup-in {
+    from { opacity: 0; transform: scale(0.88) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes nlc-popup-out {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to   { opacity: 0; transform: scale(0.88) translateY(16px); }
+}
+
+/* ====================================================
+   POPUP HEADER
+   ==================================================== */
+
+.nlc-popup-header {
+    position: relative;
+    padding: 20px 20px 18px;
+    background: linear-gradient(135deg, var(--nlc-primary) 0%, #6366f1 50%, var(--nlc-accent) 100%);
+    overflow: hidden;
+}
+
+.nlc-popup-header::before,
+.nlc-popup-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.nlc-popup-header::before {
+    width: 120px;
+    height: 120px;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    z-index: 9999;
-    padding: 20px;
+    top: -40px;
+    right: -20px;
 }
-#wlc-chat-popup h3 {
-    margin-bottom: 10px;
+
+.nlc-popup-header::after {
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    bottom: -30px;
+    left: 30px;
 }
+
+.nlc-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.nlc-header-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nlc-header-avatar svg {
+    width: 22px;
+    height: 22px;
+}
+
+.nlc-header-info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.nlc-header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    font-family: var(--nlc-font);
+    margin: 0;
+}
+
+.nlc-header-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.nlc-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: nlc-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes nlc-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.7; transform: scale(1.25); }
+}
+
+.nlc-status-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.82);
+    font-family: var(--nlc-font);
+}
+
 #wlc-chat-close {
-    float: right;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
     cursor: pointer;
-    font-size: 20px;
-    color: #444;
-    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    transition: background var(--nlc-transition), transform var(--nlc-transition);
+    font-family: var(--nlc-font);
+    position: relative;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
 }
-#wlc-chatbot .wlc-error{
-    color:red;
+
+#wlc-chat-close:hover {
+    background: rgba(255,255,255,0.28);
+    transform: rotate(90deg);
 }
-#wlc-chatbot #wlc-response{
-    color:darkgreen;
+
+/* ====================================================
+   FORM BODY
+   ==================================================== */
+
+#wlc-chatbot {
+    padding: 20px 20px 16px;
+    background: var(--nlc-surface);
+    font-family: var(--nlc-font);
 }
+
+.nlc-field {
+    margin-bottom: 13px;
+}
+
+.nlc-label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--nlc-text-muted);
+    margin-bottom: 5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: var(--nlc-font);
+}
+
+#wlc-chatbot input[type="text"],
+#wlc-chatbot input[type="email"],
+#wlc-chatbot textarea {
+    width: 100%;
+    padding: 10px 13px;
+    background: var(--nlc-surface-2);
+    border: 1.5px solid var(--nlc-border);
+    border-radius: var(--nlc-radius-sm);
+    font-size: 14px;
+    color: var(--nlc-text);
+    font-family: var(--nlc-font);
+    line-height: 1.5;
+    transition: border-color var(--nlc-transition), background var(--nlc-transition), box-shadow var(--nlc-transition);
+    outline: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+#wlc-chatbot input[type="text"]::placeholder,
+#wlc-chatbot input[type="email"]::placeholder,
+#wlc-chatbot textarea::placeholder {
+    color: #b5b2cc;
+}
+
+#wlc-chatbot input[type="text"]:focus,
+#wlc-chatbot input[type="email"]:focus,
+#wlc-chatbot textarea:focus {
+    border-color: var(--nlc-primary-light);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+}
+
+#wlc-chatbot input.nlc-has-error,
+#wlc-chatbot textarea.nlc-has-error {
+    border-color: var(--nlc-error);
+    background: var(--nlc-error-bg);
+}
+
+#wlc-chatbot textarea {
+    resize: vertical;
+    min-height: 78px;
+}
+
+.wlc-error {
+    display: block;
+    font-size: 11.5px;
+    color: var(--nlc-error);
+    font-family: var(--nlc-font);
+    margin-top: 4px;
+    min-height: 0;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* ====================================================
+   SUBMIT BUTTON
+   ==================================================== */
+
+#wlc-submit {
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--nlc-primary) 0%, #6366f1 100%);
+    color: #fff;
+    border: none;
+    border-radius: var(--nlc-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--nlc-font);
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--nlc-transition), box-shadow var(--nlc-transition), opacity var(--nlc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 6px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#wlc-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(79,70,229,0.4);
+}
+
+#wlc-submit:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
+}
+
+#wlc-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.nlc-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: nlc-spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes nlc-spin {
+    to { transform: rotate(360deg); }
+}
+
+#wlc-submit.is-loading .nlc-btn-text { display: none; }
+#wlc-submit.is-loading .nlc-spinner  { display: block; }
+
+/* ====================================================
+   RESPONSE MESSAGE
+   ==================================================== */
+
+#wlc-response {
+    margin-top: 12px;
+    padding: 10px 13px;
+    border-radius: var(--nlc-radius-sm);
+    font-size: 13px;
+    font-family: var(--nlc-font);
+    font-weight: 500;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    animation: nlc-fade-in 0.3s ease;
+}
+
+@keyframes nlc-fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#wlc-response.nlc-success {
+    display: flex;
+    background: var(--nlc-success-bg);
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+#wlc-response.nlc-error-msg {
+    display: flex;
+    background: var(--nlc-error-bg);
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ====================================================
+   FOOTER
+   ==================================================== */
+
+.nlc-popup-footer {
+    padding: 0 20px 14px;
+    text-align: center;
+    font-size: 11px;
+    color: #c4c2d6;
+    font-family: var(--nlc-font);
+}
+
+.nlc-popup-footer a {
+    color: #a5a3c2;
+    text-decoration: none;
+}
+
+.nlc-popup-footer a:hover {
+    color: var(--nlc-primary);
+}
+
+/* ====================================================
+   RESPONSIVE
+   ==================================================== */
+
+@media (max-width: 480px) {
+    #wlc-chat-popup {
+        right: 16px;
+        left: 16px;
+        width: auto;
+        bottom: 88px;
+    }
+    #wlc-floating-btn {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+/* ====================================================
+   ADMIN LEAD BADGES
+   ==================================================== */
+
+.nlc-lead-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.nlc-lead-badge.new        { background: #ede9fe; color: #5b21b6; }
+.nlc-lead-badge.contacted  { background: #dbeafe; color: #1e40af; }
+.nlc-lead-badge.converted  { background: #dcfce7; color: #166534; }

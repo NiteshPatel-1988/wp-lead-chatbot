@@ -23,7 +23,9 @@ class NPLEADCHAT_API {
     }
 
     public static function npleadchat_permission_check( $request ) {
-        $nonce = isset($_SERVER['HTTP_X_WP_NONCE'])? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) ) : '';
+        $nonce = isset( $_SERVER['HTTP_X_WP_NONCE'] )
+            ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) )
+            : '';
         return wp_verify_nonce( $nonce, 'wp_rest' );
     }
 

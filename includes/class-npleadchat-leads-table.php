@@ -1,4 +1,14 @@
 <?php
+/**
+ * Leads list table for NP Lead Chatbot.
+ *
+ * @package NP_Lead_Chatbot
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( ! class_exists( 'WP_List_Table' ) ) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
@@ -6,29 +16,29 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 class NPLEADCHAT_Leads_Table extends WP_List_Table {
 
     public function __construct() {
-        parent::__construct( [
+        parent::__construct( array(
             'singular' => 'lead',
             'plural'   => 'leads',
             'ajax'     => false,
-        ] );
+        ) );
     }
 
     public function get_columns() {
-        return [
+        return array(
             'cb'      => '<input type="checkbox" />',
-            'name'    => __( 'Name', 'np-lead-chatbot' ),
-            'email'   => __( 'Email', 'np-lead-chatbot' ),
-            'phone'   => __( 'Phone', 'np-lead-chatbot' ),
+            'name'    => __( 'Name',    'np-lead-chatbot' ),
+            'email'   => __( 'Email',   'np-lead-chatbot' ),
+            'phone'   => __( 'Phone',   'np-lead-chatbot' ),
             'message' => __( 'Message', 'np-lead-chatbot' ),
-            'date'    => __( 'Date', 'np-lead-chatbot' ),
-        ];
+            'date'    => __( 'Date',    'np-lead-chatbot' ),
+        );
     }
 
     public function get_sortable_columns() {
-        return [
-            'name' => [ 'name', false ],
-            'date' => [ 'date', true ],
-        ];
+        return array(
+            'name' => array( 'name', false ),
+            'date' => array( 'date', true ),
+        );
     }
 
     public function column_cb( $item ) {
@@ -39,52 +49,53 @@ class NPLEADCHAT_Leads_Table extends WP_List_Table {
     }
 
     protected function get_bulk_actions() {
-        return [
+        return array(
             'delete' => __( 'Delete', 'np-lead-chatbot' ),
-        ];
+        );
     }
+
     public function process_bulk_action() {
         if ( 'delete' !== $this->current_action() ) {
             return;
         }
 
-        if ( empty( $_POST['lead_ids'] ) || ! is_array( $_POST['lead_ids'] ) ) {
-            return;
-        }
-
-        if ( ! current_user_can( 'manage_options' ) ) {
-            return;
-        }
-
+        // Verify nonce before processing.
         check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
-        global $wpdb;
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die( esc_html__( 'Insufficient permissions.', 'np-lead-chatbot' ) );
+        }
 
-        $ids = array_map( 'intval', $_POST['lead_ids'] );
-        $ids = implode( ',', $ids );
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $raw_ids = isset( $_POST['lead_ids'] ) ? wp_unslash( $_POST['lead_ids'] ) : array();
 
-        $wpdb->query(
-            "DELETE FROM {$wpdb->prefix}npleadchat_leads WHERE id IN ($ids)"
-        );
+        if ( empty( $raw_ids ) || ! is_array( $raw_ids ) ) {
+            return;
+        }
+
+        $ids = array_map( 'absint', $raw_ids );
+        $ids = array_filter( $ids ); // Remove any 0s.
+
+        if ( empty( $ids ) ) {
+            return;
+        }
+
+        NPLEADCHAT_DB::npleadchat_delete_leads( $ids );
     }
 
-
-    protected function get_searchable_columns() {
-        return [ 'name', 'email', 'phone', 'message' ];
-    }
     public function prepare_items() {
         $this->process_bulk_action();
-        $per_page = 10;
 
+        $per_page = 10;
         $columns  = $this->get_columns();
-        $hidden   = [];
+        $hidden   = array();
         $sortable = $this->get_sortable_columns();
 
-        $this->_column_headers = [ $columns, $hidden, $sortable ];
+        $this->_column_headers = array( $columns, $hidden, $sortable );
 
-        $orderby = ! empty( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'date';
-        $order   = ! empty( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
-        $search  = ! empty( $_REQUEST['s'] ) ? sanitize_text_field( $_REQUEST['s'] ) : '';
+        $orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : 'date'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $order   = isset( $_GET['order'] )   ? sanitize_text_field( wp_unslash( $_GET['order'] ) )   : 'DESC'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $search  = isset( $_REQUEST['s'] )   ? sanitize_text_field( wp_unslash( $_REQUEST['s'] ) )   : '';     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
         $data = NPLEADCHAT_DB::npleadchat_get_leads( $orderby, $order, $search );
 
@@ -93,10 +104,10 @@ class NPLEADCHAT_Leads_Table extends WP_List_Table {
 
         $this->items = array_slice( $data, ( $current_page - 1 ) * $per_page, $per_page );
 
-        $this->set_pagination_args( [
+        $this->set_pagination_args( array(
             'total_items' => $total_items,
             'per_page'    => $per_page,
-        ] );
+        ) );
     }
 
     public function column_default( $item, $column_name ) {
