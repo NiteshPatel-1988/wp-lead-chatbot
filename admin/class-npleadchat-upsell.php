@@ -1,0 +1,302 @@
+<?php
+/**
+ * Pro upsell screen for Lead Capture Chat.
+ *
+ * Registers an "Upgrade to PRO" submenu page and a one-time dismissible
+ * admin notice. All output is escaped per WordPress.org coding standards.
+ *
+ * @package NP_Lead_Chatbot
+ * @since   2.3.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class NPLEADCHAT_Upsell
+ */
+class NPLEADCHAT_Upsell {
+
+	/**
+	 * Option key used to track notice dismissal.
+	 *
+	 * @var string
+	 */
+	const NOTICE_DISMISSED_OPTION = 'npleadchat_upsell_notice_dismissed';
+
+	/**
+	 * Freemius checkout URL (PRO plan).
+	 *
+	 * @var string
+	 */
+	const UPGRADE_URL = 'https://checkout.freemius.com/plugin/29207/plan/48049/';
+
+	/**
+	 * Live-preview / demo URL.
+	 *
+	 * @var string
+	 */
+	const PREVIEW_URL = 'https://leadcapturechat.netlify.app/';
+
+	/**
+	 * Boot all hooks.
+	 *
+	 * @return void
+	 */
+	public static function npleadchat_upsell_init() {
+		add_action( 'admin_menu',    array( __CLASS__, 'npleadchat_add_submenu' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'npleadchat_admin_notice' ) );
+		add_action( 'admin_init',    array( __CLASS__, 'npleadchat_handle_notice_dismiss' ) );
+	}
+
+	// -------------------------------------------------------------------------
+	// Submenu
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Register the "Upgrade to PRO" submenu under the plugin's top-level menu.
+	 *
+	 * @return void
+	 */
+	public static function npleadchat_add_submenu() {
+		add_submenu_page(
+			'npleadchat-leads',
+			esc_html__( 'Upgrade to PRO – Lead Capture Chat', 'np-lead-chatbot' ),
+			/* translators: menu label — the rocket emoji is decorative */
+			esc_html__( 'Upgrade to PRO 🚀', 'np-lead-chatbot' ),
+			'manage_options',
+			'npleadchat-upgrade',
+			array( __CLASS__, 'npleadchat_render_page' )
+		);
+	}
+
+	/**
+	 * Render the upsell page.
+	 *
+	 * @return void
+	 */
+	public static function npleadchat_render_page() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Insufficient permissions.', 'np-lead-chatbot' ) );
+		}
+
+		$upgrade_url = esc_url( self::UPGRADE_URL );
+		$preview_url = esc_url( self::PREVIEW_URL );
+
+		?>
+		<div class="wrap npleadchat-upsell-wrap">
+
+			<h1>
+				<?php esc_html_e( 'Upgrade to Lead Capture Chat PRO 🚀', 'np-lead-chatbot' ); ?>
+			</h1>
+
+			<p class="npleadchat-upsell-tagline">
+				<?php esc_html_e( 'Unlock powerful lead generation features and grow your business faster.', 'np-lead-chatbot' ); ?>
+			</p>
+
+			<!-- ── Benefits card ─────────────────────────────────────────── -->
+			<div class="npleadchat-upsell-card">
+
+				<h2><?php esc_html_e( 'Why Upgrade?', 'np-lead-chatbot' ); ?></h2>
+
+				<ul class="npleadchat-upsell-benefits">
+					<li>&#x2705; <?php esc_html_e( 'Unlimited Leads', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Custom Field Builder', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Email Notifications', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Auto Replies', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Spam Protection', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Full Appearance &amp; Branding Control', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Live Admin Preview', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Priority Support', 'np-lead-chatbot' ); ?></li>
+				</ul>
+
+				<hr>
+
+				<!-- ── Comparison table ──────────────────────────────────── -->
+				<h2><?php esc_html_e( 'Free vs PRO', 'np-lead-chatbot' ); ?></h2>
+
+				<table class="widefat striped npleadchat-compare-table">
+					<thead>
+						<tr>
+							<th scope="col"><?php esc_html_e( 'Feature', 'np-lead-chatbot' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Free', 'np-lead-chatbot' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'PRO', 'np-lead-chatbot' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						$rows = array(
+							array(
+								esc_html__( 'Unlimited Leads',      'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Custom Fields',         'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Email Notifications',   'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Auto Replies',          'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Spam Protection',       'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Appearance Control',    'np-lead-chatbot' ),
+								esc_html__( 'Basic', 'np-lead-chatbot' ),
+								esc_html__( 'Full',  'np-lead-chatbot' ),
+							),
+							array(
+								esc_html__( 'Priority Support',      'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+						);
+
+						foreach ( $rows as $row ) {
+							printf(
+								'<tr><td>%s</td><td>%s</td><td>%s</td></tr>',
+								$row[0], // Already escaped above.
+								$row[1],
+								$row[2]
+							);
+						}
+						?>
+					</tbody>
+				</table>
+
+				<!-- ── CTAs ──────────────────────────────────────────────── -->
+				<p class="npleadchat-upsell-actions">
+					<a href="<?php echo $upgrade_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped via esc_url() above ?>"
+					   class="button button-primary button-hero"
+					   target="_blank"
+					   rel="noopener noreferrer">
+						<?php esc_html_e( '🚀 Upgrade to PRO', 'np-lead-chatbot' ); ?>
+					</a>
+
+					<a href="<?php echo $preview_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped via esc_url() above ?>"
+					   class="button button-secondary button-hero"
+					   target="_blank"
+					   rel="noopener noreferrer">
+						<?php esc_html_e( '🎨 Live Preview', 'np-lead-chatbot' ); ?>
+					</a>
+				</p>
+
+				<p class="npleadchat-upsell-note">
+					<?php esc_html_e( 'Plans start at just $3/month · 7-day free trial · 14-day money-back guarantee', 'np-lead-chatbot' ); ?>
+				</p>
+
+			</div><!-- .npleadchat-upsell-card -->
+
+		</div><!-- .wrap -->
+
+		<style>
+		/* Scoped to this page only — no separate stylesheet needed */
+		.npleadchat-upsell-wrap h1   { font-size: 1.8em; margin-bottom: .4em; }
+		.npleadchat-upsell-tagline   { font-size: 1em; color: #555; margin-bottom: 1.5em; }
+		.npleadchat-upsell-card      { background: #fff; padding: 28px 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); max-width: 860px; }
+		.npleadchat-upsell-card hr   { margin: 24px 0; border: none; border-top: 1px solid #e5e5e5; }
+		.npleadchat-upsell-benefits  { margin: 12px 0 0; padding: 0 0 0 4px; list-style: none; }
+		.npleadchat-upsell-benefits li { font-size: .95em; line-height: 2; }
+		.npleadchat-compare-table    { margin-top: 16px; }
+		.npleadchat-upsell-actions   { margin-top: 28px; }
+		.npleadchat-upsell-actions .button { margin-right: 10px; }
+		.npleadchat-upsell-note      { margin-top: 14px; color: #777; font-size: .85em; }
+		</style>
+
+		<?php
+	}
+
+	// -------------------------------------------------------------------------
+	// Dismissible admin notice
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Show a one-time dismissible notice on all admin pages (admins only).
+	 * The user can permanently dismiss it via a nonce-protected link.
+	 *
+	 * @return void
+	 */
+	public static function npleadchat_admin_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// Already dismissed? Never show again.
+		if ( get_option( self::NOTICE_DISMISSED_OPTION ) ) {
+			return;
+		}
+
+		// Don't show on our own upsell page — redundant.
+		$screen = get_current_screen();
+		if ( $screen && 'nplead-chatbot_page_npleadchat-upgrade' === $screen->id ) {
+			return;
+		}
+
+		$upgrade_url = esc_url( self::UPGRADE_URL );
+		$dismiss_url = esc_url(
+			wp_nonce_url(
+				add_query_arg( 'npleadchat_dismiss_notice', '1' ),
+				'npleadchat_dismiss_notice_nonce'
+			)
+		);
+
+		?>
+		<div class="notice notice-info" id="npleadchat-upsell-notice">
+			<p>
+				<?php
+				printf(
+					/* translators: 1: opening <strong> tag, 2: closing </strong> tag, 3: upgrade link HTML */
+					esc_html__( '%1$sLead Capture Chat PRO%2$s — unlock custom fields, email notifications, spam protection, unlimited leads, and more. %3$s', 'np-lead-chatbot' ),
+					'<strong>',
+					'</strong>',
+					sprintf(
+						'<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
+						$upgrade_url,
+						esc_html__( 'Upgrade Now →', 'np-lead-chatbot' )
+					)
+				);
+				?>
+				&nbsp;&nbsp;<a href="<?php echo $dismiss_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_url() applied above ?>" style="color:#999; text-decoration:none; font-size:.85em;">
+					<?php esc_html_e( 'Dismiss', 'np-lead-chatbot' ); ?>
+				</a>
+			</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Handle the dismiss-notice request and store the preference.
+	 *
+	 * @return void
+	 */
+	public static function npleadchat_handle_notice_dismiss() {
+		if ( ! isset( $_GET['npleadchat_dismiss_notice'] ) ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		check_admin_referer( 'npleadchat_dismiss_notice_nonce' );
+
+		update_option( self::NOTICE_DISMISSED_OPTION, true );
+
+		// Redirect back without the query arg so the page looks clean.
+		$redirect = remove_query_arg( array( 'npleadchat_dismiss_notice', '_wpnonce' ) );
+		wp_safe_redirect( $redirect );
+		exit;
+	}
+}

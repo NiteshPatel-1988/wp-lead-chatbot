@@ -1,130 +1,84 @@
 === Lead Capture Chat ===
-Contributors: nitspatel
-Tags: lead generation, chat widget, contact form, leads, floating widget, lead capture, visitor leads, lead form, lead chatbot
+Contributors:      nitspatel
+Tags:              lead generation, chat widget, contact form, leads, floating widget
 Requires at least: 6.0
-Tested up to: 6.9
-Requires PHP: 7.4
-Stable tag: 2.2.3
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tested up to:      6.9
+Requires PHP:      7.4
+Stable tag:        2.3.0
+License:           GPLv2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-A beautiful floating chat widget for WordPress. Collect visitor details, manage leads in your dashboard, and export to CSV.
+A beautiful floating chat widget for WordPress. Collect visitor leads, manage them in your dashboard, and export to CSV - all without a SaaS dependency.
 
 == Description ==
 
-Lead Capture Chat adds a polished, animated floating chat widget to your WordPress site that captures visitor name, email, phone, and message - then stores every lead directly in your WordPress admin.
+Lead Capture Chat adds a polished, animated floating chat widget to your WordPress site. It captures every visitor's name, email, phone, and message, then stores each lead directly inside your WordPress admin.
 
-No third-party services. No monthly fees. No data leaves your server.
+No third-party services. No monthly SaaS fees. No data leaves your server.
 
-🚀 Want to see the full PRO experience?
-
-
-**[Live Features & Pricing Preview:](https://leadcapturechat.netlify.app/)**
-
-
-🎥 **[Watch WP LeadChat Pro Demo Video](https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4)**
-
-
-**[🔥 Upgrade to WP LeadChat Pro:](https://checkout.freemius.com/plugin/29207/plan/48049/)**
-
-
----
-
-= Why Users Upgrade to PRO 🚀 =
-
-WP LeadChat Pro transforms your simple floating chat widget into a complete lead generation system for freelancers, agencies, businesses, SaaS landing pages, and WooCommerce stores.
-
-With PRO, you can:
-
-✅ Capture unlimited leads  
-✅ Add unlimited custom fields  
-✅ Send automated email replies  
-✅ Protect forms using reCAPTCHA  
-✅ Fully customize colors, text, branding, and layout  
-✅ Manage everything directly inside WordPress  
-✅ Improve conversions with a professional lead capture experience  
-
-**[View Live Features & Pricing Preview:](https://leadcapturechat.netlify.app/)**
+🚀 **[Live Demo & PRO Features Preview](https://leadcapturechat.netlify.app/)**
+🎥 **[Watch the PRO Demo Video](https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4)**
+🔥 **[Upgrade to WP LeadChat Pro](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
 
 = ✅ Free Features =
 
-* Floating chat widget - animated slide-up popup triggered by a fixed button in the corner of every page
-* Inline shortcode - embed the form anywhere with `[npleadchat]`
-* Leads dashboard - view, search, sort, and manage all leads from WP Admin → NP Lead Chatbot
-* Bulk actions - select and delete multiple leads at once
-* Search & sort - find leads by name, email, phone, or message; sort by name or date
-* Client-side validation - instant feedback before form submission
-* CSV Export - export leads directly from the admin dashboard
-* REST API powered - uses the WordPress REST API with nonce verification
-* GDPR-friendly - all data stored locally in your own database, no external services
+* **Floating chat widget** - animated slide-up popup triggered by a fixed button in the corner of every page
+* **Inline shortcode** - embed the form anywhere with `[npleadchat]`
+* **Leads dashboard** - view, search, sort, and manage all leads from WP Admin → NP Lead chatbot
+* **Bulk actions** - select and delete multiple leads at once
+* **Search & sort** - find leads by name, email, phone, or message; sort by name or date
+* **Client-side validation** - instant feedback before form submission
+* **CSV Export** - download all leads as a CSV file directly from the admin dashboard
+* **REST API powered** - built on the WordPress REST API with nonce verification
+* **GDPR-friendly** - all data stored locally in your own database; no external services
 
 ---
 
-= ⚡ Upgrade to WP LeadChat Pro =
+= ⚡ Why Upgrade to WP LeadChat Pro? =
 
-🎥 **[Watch Demo:](https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4)**
+WP LeadChat Pro turns your simple floating widget into a complete lead generation system for freelancers, agencies, WooCommerce stores, and SaaS landing pages.
 
-🚀 Ready to capture more leads and automate follow-ups?
-
-WP LeadChat Pro unlocks advanced lead generation features designed for growing businesses, freelancers, and agencies.
-
-= Lead Capture =
+**Lead Capture**
 
 * Unlimited leads - no monthly cap
 * Custom Field Builder - Text, Email, Phone, Dropdown, Checkbox, Textarea
 * Drag-and-drop field reordering
 * Live admin preview while editing settings
 
-= Lead Management =
+**Email Automation**
 
-* Lead detail modal popup
-* Better lead organization & workflow
-
-= Email Notifications =
-
-* Instant admin notifications
-* Automatic lead auto-replies
-* Template tags support
+* Instant admin notifications on every new lead
+* Automatic visitor auto-replies
+* Template tag support (name, email, message, etc.)
 * Custom sender identity
 
-= Spam Protection =
+**Spam Protection**
 
-* Honeypot anti-spam protection
+* Honeypot anti-spam field
 * Google reCAPTCHA v3 support
 
-= Appearance & Customisation =
+**Appearance & Branding**
 
-* Color picker controls
-* Widget position (left/right)
+* Full colour picker controls
+* Widget position - left or right
 * Adjustable widget width
-* Custom profile image/logo
-* Editable text and branding
+* Custom profile image / logo upload
+* Editable welcome text and branding
 
-🔥 Plans start at just $3/month
+**Plans start at just $3/month · 7-day free trial · 14-day money-back guarantee**
 
-✔ 7-day free trial  
-✔ 14-day money-back guarantee  
-✔ Lifetime plans available  
-
-**[View pricing & live demo:](https://leadcapturechat.netlify.app/)**
-
-**[👉 Upgrade to PRO:](https://checkout.freemius.com/plugin/29207/plan/48049/)**
-
----
-
-**[👉 See full feature breakdown & pricing:](https://leadcapturechat.netlify.app/)**
+🔥 **[Upgrade to WP LeadChat Pro →](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
 
 = Perfect For =
 
-* Freelancers
+* Freelancers and consultants
 * Agencies
-* Small businesses
-* Service providers
-* Coaches & consultants
+* Small businesses and service providers
+* Coaches
 * WooCommerce stores
 * SaaS landing pages
 * Lead generation websites
@@ -135,46 +89,44 @@ WP LeadChat Pro unlocks advanced lead generation features designed for growing b
 
 1. A visitor clicks the floating chat button on your site
 2. A smooth animated pop-up appears
-3. The visitor submits their information
+3. The visitor fills in their details and submits
 4. The lead is saved instantly in your WordPress database
-5. You manage leads directly from WP Admin → NP Lead Chatbot
+5. You manage all leads from WP Admin → NP Lead Chatbot
 
 ---
 
 = Shortcode =
 
-Use `[npleadchat]` to embed the form inline anywhere on your site.
+Use `[npleadchat]` to embed the form inline anywhere - pages, posts, or widget areas.
 
 ---
 
 = Privacy & GDPR =
 
-This plugin stores lead data only in your own WordPress database. No external services are required. No third-party tracking. No monthly SaaS dependency.
+This plugin stores lead data only in your own WordPress database. No external API calls are made. No third-party tracking. No SaaS dependency.
 
 ---
 
 == Installation ==
 
-= Automatic installation =
+= Automatic Installation =
 
-1. Go to Plugins → Add New
-2. Search for Lead Capture Chat
-3. Click Install Now
-4. Activate the plugin
+1. Go to **Plugins → Add New**
+2. Search for **Lead Capture Chat**
+3. Click **Install Now**, then **Activate**
 
-= Manual installation =
+= Manual Installation =
 
-1. Download the ZIP file
-2. Go to Plugins → Add New → Upload Plugin
-3. Upload the ZIP file
-4. Activate the plugin
+1. Download the ZIP file from WordPress.org
+2. Go to **Plugins → Add New → Upload Plugin**
+3. Upload the ZIP file and click **Activate Plugin**
 
-= After activation =
+= After Activation =
 
-* Floating widget appears automatically
-* View leads in WP Admin → NP Lead Chatbot
-* Use shortcode `[npleadchat]` for inline forms
-* Upgrade anytime for advanced PRO features
+* The floating widget appears automatically on all pages
+* View captured leads at **WP Admin → NP Lead Chatbot**
+* Use `[npleadchat]` for an inline embed
+* Visit **WP Admin → NP Lead Chatbot → Upgrade to PRO** to unlock advanced features
 
 ---
 
@@ -186,73 +138,69 @@ Yes. It works with Elementor, Divi, Gutenberg, WooCommerce, and all modern WordP
 
 = Where are leads stored? =
 
-All leads are stored locally inside your WordPress database. No external servers are used.
+All leads are stored locally inside your WordPress database. No external servers, APIs, or SaaS services are involved.
 
-= Can I embed the form on pages? =
+= Can I embed the form on pages or posts? =
 
-Yes. Use the shortcode `[npleadchat]`.
+Yes. Use the shortcode `[npleadchat]` anywhere you want an inline form.
 
-= Can I customize the widget design? =
+= Can I customise the widget design? =
 
-Basic CSS customization is possible in the free version. Full appearance controls are available in WP LeadChat Pro.
+Basic CSS customisation is possible in the free version. Full colour, branding, and layout controls are available in WP LeadChat Pro.
 
 = Can I add custom fields? =
 
-Yes. WP LeadChat Pro includes a powerful Custom Field Builder.
+Yes. WP LeadChat Pro includes a drag-and-drop Custom Field Builder supporting text, email, phone, dropdown, checkbox, and textarea fields.
 
 = Does it support email notifications? =
 
-Yes. Admin notifications and lead auto-replies are included in WP LeadChat Pro.
+Admin notifications and visitor auto-replies are included in WP LeadChat Pro.
 
 = Is spam protection included? =
 
-WP LeadChat Pro includes Honeypot and Google reCAPTCHA v3 support.
+WP LeadChat Pro includes Honeypot and Google reCAPTCHA v3 protection.
 
-= Will my existing leads transfer to PRO? =
+= Will my existing free leads transfer to PRO? =
 
-Yes. Existing leads are automatically detected and imported into PRO.
+Yes. Existing leads are automatically detected and available in PRO - no data migration needed.
 
 = Does this plugin slow down my website? =
 
-No. The plugin is lightweight and optimized for performance.
+No. Assets are only loaded where needed and fonts are bundled locally (no Google Fonts external request).
 
 = Is this plugin GDPR compliant? =
 
-The plugin stores data locally and makes no external requests. GDPR compliance depends on how you handle collected lead data on your website.
+The plugin makes no external requests and stores all data locally. GDPR compliance ultimately depends on how you handle the collected lead data on your site.
 
-= What happens if I uninstall the plugin? =
+= What happens when I uninstall the plugin? =
 
-The plugin removes its custom database table during uninstall.
+The plugin removes its custom database table on uninstall to keep your database clean.
 
 = What is WP LeadChat Pro? =
 
-WP LeadChat Pro is the premium version that adds:
+WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fields, email automation, spam protection, full appearance customisation, live admin preview, and priority support.
 
-* Unlimited leads
-* Custom fields
-* Email automation
-* Spam protection
-* Appearance customization
-* Live preview
-* Advanced lead management
-
-**[👉 Learn more:](https://leadcapturechat.netlify.app/)**
-
-**[👉 Upgrade now:](https://checkout.freemius.com/plugin/29207/plan/48049/)**
-
+🔥 **[Learn more & upgrade →](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
 
 == Screenshots ==
 
-1. The floating chat widget opens on a page with a gradient header, avatar, modern form fields, and a success message
-2. Leads dashboard - view, search, sort, and bulk-delete all captured leads in WP Admin
-3. **Settings + live preview(PRO)** - the full settings panel showing colour pickers, avatar upload, field toggles, and the live preview sidebar updating in real time as you type
-4. **Custom Field Builder (Pro)** - drag-and-drop field list with custom field types (Text, Dropdown, Checkbox and more), reorderable rows, and required field toggles - unlocked with a Pro licence
+1. The floating chat widget - gradient header, avatar, animated popup, modern form fields, and a success message
+2. Leads dashboard - view, search, sort, and bulk-delete all captured leads inside WP Admin
+3. **PRO: Settings panel with live preview** - colour pickers, avatar upload, field toggles, and a real-time live preview sidebar
+4. **PRO: Custom Field Builder** - drag-and-drop fields with type selectors (Text, Dropdown, Checkbox, and more) and required-field toggles
 
 ---
 
 == Changelog ==
+
+= 2.3.0 =
+* Added: In-admin Upgrade to PRO page (WP Admin → NP Lead Chatbot → Upgrade to PRO) with feature list, Free vs PRO comparison table, and live preview link
+* Added: Dismissible admin notice promoting PRO features - permanently dismissible per user with a single click
+* Improved: Upsell code is fully i18n-ready, uses proper escaping throughout, and follows WordPress coding standards
+* Improved: PRO upsell is automatically disabled when the PRO version is active (no duplicate notices)
+* Updated: Version bumped to 2.3.0
 
 = 2.2.3 =
 * Added PRO landing page links
@@ -261,21 +209,20 @@ WP LeadChat Pro is the premium version that adds:
 * Enhanced PRO promotion inside the readme
 
 = 2.2.2 =
-* Add Demo Video Of PRO Plugin
-* Make some text changes in the README file
+* Added demo video link for PRO plugin
+* Minor readme content changes
 
 = 2.2.1 =
-* Delete the readme backup file, which was mistakenly added, and commit
-* make some small changes in the README file
+* Removed accidentally committed readme backup file
+* Minor readme changes
 
 = 2.2.0 =
-* Added: Pro upsell section in plugin description - links to WP LeadChat Pro for unlimited leads, custom fields, email notifications, CSV export, and spam protection
+* Added: Pro upsell section in plugin description
 * Added: New FAQ entries explaining Pro features and how to upgrade
-* Fixed: "Can I change colours?" FAQ updated to correctly point to Pro instead of "planned for future release"
+* Fixed: FAQ entry for colour customisation now correctly points to Pro
 
 = 2.1.1 =
-* Changed the description of the plugin
-* Removed some unwanted details
+* Description update only - no functionality changes
 
 = 2.1.0 =
 * Plugin renamed from NP Lead Chatbot to Lead Capture Chat for clarity and better searchability
@@ -283,13 +230,13 @@ WP LeadChat Pro is the premium version that adds:
 * No database or functionality changes - safe to upgrade
 
 = 2.0.0 =
-* Complete UI redesign — gradient header, DM Sans font (bundled locally), animated popup, modern inputs with focus states
+* Complete UI redesign - gradient header, DM Sans font (bundled locally), animated popup, modern inputs
 * Added floating button toggle animation (chat icon ↔ close icon)
 * Added slide-up open / scale-down close popup animation
 * Added loading spinner on submit button during form submission
 * Added styled success and error response messages with icons
 * Added Escape key and outside-click to close the popup
-* Added ARIA labels and roles for accessibility
+* Added ARIA labels and roles for full accessibility
 * Replaced Google Fonts external request with locally bundled woff2 font files
 * Refactored frontend PHP - shared form field helper, proper label elements, autocomplete attributes
 * Improved inline validation - error state clears as user types
@@ -301,36 +248,32 @@ WP LeadChat Pro is the premium version that adds:
 * Minor performance improvements
 
 = 1.1.0 =
-* Added bulk actions support in admin listing
-* Added search functionality in the admin listing
-* Added column sorting in admin listing
+* Added bulk actions support in admin lead listing
+* Added search functionality
+* Added column sorting
 * Improved UI and performance
 
 = 1.0.0 =
 * Initial release with lead capture form and admin dashboard
 
+---
+
 == Upgrade Notice ==
 
+= 2.3.0 =
+Adds an in-admin PRO upgrade page and a dismissible admin notice. No database changes - safe to upgrade.
+
 = 2.2.3 =
-Improved upgrade CTAs, added comparison table
-
-= 2.2.2 =
-Make some content changes in the README file
-
-= 2.2.1 =
-Make small changes in the README file
+Improved upgrade CTAs and added comparison table. Safe to upgrade.
 
 = 2.2.0 =
-Adds Pro upsell information and fixes references to admin menu names. Safe to upgrade — no database or functionality changes.
-
-= 2.1.1 =
-Description update only. Safe to upgrade.
+Adds Pro upsell information. No database or functionality changes. Safe to upgrade.
 
 = 2.1.0 =
-Plugin renamed to Lead Capture Chat. No database or functionality changes — safe to upgrade.
+Plugin renamed to Lead Capture Chat. No database or functionality changes - safe to upgrade.
 
 = 2.0.0 =
-Major UI redesign. The floating widget and inline shortcode form now have a professional gradient header, smooth animations, and modern input styling. No database changes — safe to upgrade.
+Major UI redesign. No database changes - safe to upgrade.
 
 = 1.2.0 =
 Adds CSV export for leads. Safe to upgrade.

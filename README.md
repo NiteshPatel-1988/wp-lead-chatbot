@@ -2,212 +2,162 @@
 
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
+![Version](https://img.shields.io/badge/Version-2.3.0-orange)
 ![License](https://img.shields.io/badge/License-GPLv2-green)
 
-A modern floating lead capture chat widget for WordPress.
-
-Capture visitor leads directly on your website using a polished floating chat form and manage everything inside your WordPress dashboard.
-
-No third-party SaaS. No monthly dependency. All lead data stays inside your own WordPress database.
+A modern floating lead capture chat widget for WordPress. Collect visitor leads directly on your site and manage everything inside your WordPress dashboard — no SaaS, no monthly dependency, no data leaving your server.
 
 ---
 
-## Live Demo
+## 🌐 Links
 
-🌐 **Preview**  
-https://leadcapturechat.netlify.app/
-
-🎥 **Watch Demo**  
-https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4
-
-🚀 **Upgrade to Pro**  
-https://checkout.freemius.com/plugin/29207/plan/48049/
+| | |
+|---|---|
+| 🌐 Live Demo & PRO Preview | https://leadcapturechat.netlify.app/ |
+| 🎥 Watch the PRO Demo | https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4 |
+| 🚀 Upgrade to PRO | https://checkout.freemius.com/plugin/29207/plan/48049/ |
+| 🔌 WordPress.org Plugin Page | https://wordpress.org/plugins/wp-lead-chatbot/ |
 
 ---
 
-# Features
-
-## Free Version
+## ✅ Free Features
 
 - Floating animated lead capture widget
-- Inline shortcode support
-- Lead dashboard
-- Search and sorting
-- Bulk delete
+- Inline shortcode — `[npleadchat]`
+- Leads dashboard with search, sorting, and bulk delete
 - CSV export
-- REST API powered
-- Secure nonce verification
+- Client-side validation
+- REST API powered with nonce verification
 - GDPR-friendly local storage
-- Lightweight assets
-- Works with Elementor, Divi, Gutenberg & WooCommerce
+- Locally bundled fonts (no Google Fonts request)
+- Works with Elementor, Divi, Gutenberg, and WooCommerce
 
 ---
 
-# Pro Features
+## 🚀 PRO Features
 
-## Advanced Lead Capture
+### Lead Capture
+- Unlimited leads — no cap
+- Custom Field Builder (Text, Email, Phone, Dropdown, Checkbox, Textarea)
+- Drag-and-drop field reordering
+- Live admin preview
 
-- Unlimited leads
-- Unlimited custom fields
-- Drag-and-drop builder
-- Required/optional controls
-
-## Email Automation
-
-- Admin notifications
+### Email Automation
+- Admin notification emails
 - Visitor auto-replies
-- Template variables
-- Custom sender settings
+- Template tag support
+- Custom sender identity
 
-## Spam Protection
-
-- Honeypot
+### Spam Protection
+- Honeypot field
 - Google reCAPTCHA v3
 
-## Appearance Controls
+### Appearance & Branding
+- Full colour picker controls
+- Widget position (left / right)
+- Adjustable widget width
+- Custom logo / profile image upload
+- Editable welcome text and branding
 
-- Full color customization
-- Widget positioning
-- Adjustable width
-- Branding/logo upload
-- Editable welcome message
-- Live preview
+> Plans start at $3/month · 7-day free trial · 14-day money-back guarantee
 
 ---
 
-# Free vs Pro
+## Free vs PRO
 
-| Feature | Free | Pro |
-|---------|------|-----|
-| Floating Widget | ✅ | ✅ |
+| Feature | Free | PRO |
+|---|:---:|:---:|
+| Floating Chat Widget | ✅ | ✅ |
+| Inline Shortcode | ✅ | ✅ |
 | CSV Export | ✅ | ✅ |
 | Unlimited Leads | ❌ | ✅ |
 | Custom Fields | ❌ | ✅ |
-| Email Automation | ❌ | ✅ |
+| Email Notifications | ❌ | ✅ |
+| Auto Replies | ❌ | ✅ |
 | Spam Protection | ❌ | ✅ |
-| Branding Controls | ❌ | ✅ |
-| Live Preview | ❌ | ✅ |
+| Appearance Control | Basic | Full |
+| Live Admin Preview | ❌ | ✅ |
+| Priority Support | ❌ | ✅ |
 
 ---
 
-# Installation
+## Installation
+
+**From WordPress.org (recommended)**
+
+1. Go to **Plugins → Add New**
+2. Search for **Lead Capture Chat**
+3. Click **Install Now**, then **Activate**
+
+**Manual**
 
 ```bash
-Upload plugin → Activate → Done
+# Download the ZIP from WordPress.org, then:
+# WP Admin → Plugins → Add New → Upload Plugin → Activate
 ```
 
-Or install from WordPress Plugins screen.
+After activation the floating widget appears automatically. Visit **WP Admin → NP Lead Chatbot** to manage leads.
 
 ---
 
-# Usage
-
-After activation:
+## Shortcode
 
 ```php
 [npleadchat]
 ```
 
-Manage leads inside:
-
-```text
-WP Admin → NP Lead chatbot
-```
+Embeds the lead form inline anywhere — pages, posts, or widget areas.
 
 ---
 
-# Screenshots
+## Changelog
 
-## Floating Widget
-Modern lead capture popup
+### 2.3.0
+- **Added** in-admin **Upgrade to PRO** page (`WP Admin → NP Lead Chatbot → Upgrade to PRO 🚀`) with full feature list, Free vs PRO comparison table, and live preview / checkout links
+- **Added** dismissible admin notice promoting PRO — permanently dismissible per-user via a nonce-protected link, no JavaScript dependency
+- **Improved** all upsell code is fully i18n-ready, properly escaped, and follows WordPress coding standards
+- **Improved** upsell is automatically disabled when the PRO version is active — no duplicate notices or menus
+- Version bumped to **2.3.0**
 
-## Dashboard
-Manage and export captured leads
-
-## Pro Settings
-Customization panel with live preview
-
-## Custom Field Builder
-Drag-and-drop field creation
-
----
-
-# Developer Friendly
-
-- Built with WordPress REST API
-- Secure nonce validation
-- Translation ready
-- Accessibility improvements
-- Performance optimized
-- WordPress coding standards
-
----
-
-# Privacy
-
-Lead data is stored locally in your WordPress database.
-
-No external tracking  
-No SaaS dependency  
-No third-party storage
-
----
-
-# FAQ
-
-### Does it work with Elementor?
-
-Yes.
-
-### Does it store data locally?
-
-Yes.
-
-### Can I embed forms manually?
-
-Yes using:
-
-```php
-[npleadchat]
-```
-
-### Will free leads transfer to Pro?
-
-Yes automatically.
-
----
-
-# Changelog
-
-## 2.2.3
-
-- Improved documentation
+### 2.2.3
+- Improved upgrade CTAs
 - Added comparison table
-- Better Pro upgrade flow
+- Enhanced PRO promotion in readme
 
-## 2.2.0
+### 2.2.2
+- Added demo video link
+- Minor readme content changes
 
-- Added Pro feature overview
-- Improved plugin branding
+### 2.2.0
+- Added Pro upsell section in plugin description
+- New FAQ entries for Pro features
 
-## 2.0.0
+### 2.0.0
+- Complete UI redesign — gradient header, DM Sans font, animated popup
+- Locally bundled fonts (removed Google Fonts dependency)
+- Added ARIA labels and accessibility improvements
+- Added `[npleadchat]` inline shortcode
 
-- Complete UI redesign
-- Added animations
-- Added shortcode support
+### 1.2.0
+- Added CSV export
+
+### 1.0.0
+- Initial release
 
 ---
 
-# Support
+## Privacy
 
-Official Website:  
-https://leadcapturechat.netlify.app/
-
-Report Issues via GitHub Issues tab.
+All lead data is stored inside your own WordPress database. The plugin makes no external API requests. No tracking, no SaaS dependency, no third-party storage.
 
 ---
 
-# License
+## Contributing
 
-GPL v2 or later  
-https://www.gnu.org/licenses/gpl-2.0.html
+Issues and pull requests are welcome via the [GitHub repository](https://github.com/NiteshPatel-1988).
+
+---
+
+## License
+
+GPL v2 or later — https://www.gnu.org/licenses/gpl-2.0.html
