@@ -62,7 +62,7 @@ class NPLEADCHAT_Upsell {
 	public static function npleadchat_add_submenu() {
 		add_submenu_page(
 			'npleadchat-leads',
-			esc_html__( 'Upgrade to PRO – Lead Capture Chat', 'np-lead-chatbot' ),
+			esc_html__( 'Upgrade to PRO - Lead Capture Chat', 'np-lead-chatbot' ),
 			/* translators: menu label — the rocket emoji is decorative */
 			esc_html__( 'Upgrade to PRO 🚀', 'np-lead-chatbot' ),
 			'manage_options',
@@ -108,6 +108,8 @@ class NPLEADCHAT_Upsell {
 					<li>&#x2705; <?php esc_html_e( 'Spam Protection', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Full Appearance &amp; Branding Control', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Live Admin Preview', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Analytics Dashboard', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'CRM Dashboard', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Priority Support', 'np-lead-chatbot' ); ?></li>
 				</ul>
 
@@ -127,6 +129,27 @@ class NPLEADCHAT_Upsell {
 					<tbody>
 						<?php
 						$rows = array(
+
+						   array(
+								esc_html__( 'Floating chat widget',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Inline shortcode',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Search & sort',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'CSV Export',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
 							array(
 								esc_html__( 'Unlimited Leads',      'np-lead-chatbot' ),
 								'&#x274C;',
@@ -156,6 +179,21 @@ class NPLEADCHAT_Upsell {
 								esc_html__( 'Appearance Control',    'np-lead-chatbot' ),
 								esc_html__( 'Basic', 'np-lead-chatbot' ),
 								esc_html__( 'Full',  'np-lead-chatbot' ),
+							),
+							array(
+								esc_html__( 'Spam Protection',       'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Analytics Dashboard',       'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'CRM Dashboard',      'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
 							),
 							array(
 								esc_html__( 'Priority Support',      'np-lead-chatbot' ),
@@ -194,7 +232,7 @@ class NPLEADCHAT_Upsell {
 				</p>
 
 				<p class="npleadchat-upsell-note">
-					<?php esc_html_e( 'Plans start at just $3/month · 7-day free trial · 14-day money-back guarantee', 'np-lead-chatbot' ); ?>
+					<?php esc_html_e( 'Plans start at just $3/month · 14-day free trial · 30-day money-back guarantee', 'np-lead-chatbot' ); ?>
 				</p>
 
 			</div><!-- .npleadchat-upsell-card -->
@@ -258,7 +296,7 @@ class NPLEADCHAT_Upsell {
 				<?php
 				printf(
 					/* translators: 1: opening <strong> tag, 2: closing </strong> tag, 3: upgrade link HTML */
-					esc_html__( '%1$sLead Capture Chat PRO%2$s — unlock custom fields, email notifications, spam protection, unlimited leads, and more. %3$s', 'np-lead-chatbot' ),
+					esc_html__( '%1$sLead Capture Chat PRO%2$s - unlock custom fields, email notifications, spam protection, unlimited leads, and more. %3$s', 'np-lead-chatbot' ),
 					'<strong>',
 					'</strong>',
 					sprintf(

@@ -1,10 +1,10 @@
 === Lead Capture Chat ===
 Contributors:      nitspatel
-Tags:              lead generation, chat widget, contact form, leads, floating widget
+Tags:              lead generation, chat widget, contact form, leads, floating widget, lead management,lead tracking
 Requires at least: 6.0
 Tested up to:      6.9
 Requires PHP:      7.4
-Stable tag:        2.3.0
+Stable tag:        2.3.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ Lead Capture Chat adds a polished, animated floating chat widget to your WordPre
 No third-party services. No monthly SaaS fees. No data leaves your server.
 
 🚀 **[Live Demo & PRO Features Preview](https://leadcapturechat.netlify.app/)**
-🎥 **[Watch the PRO Demo Video](https://www.awesomescreenshot.com/video/52257987?key=f8ea1c56911033d0146356b861a427d4)**
+🎥 **[Watch the PRO Demo Video](https://go.screenpal.com/watch/cOhYQKntkfx)**
 🔥 **[Upgrade to WP LeadChat Pro](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
@@ -67,7 +67,28 @@ WP LeadChat Pro turns your simple floating widget into a complete lead generatio
 * Custom profile image / logo upload
 * Editable welcome text and branding
 
-**Plans start at just $3/month · 7-day free trial · 14-day money-back guarantee**
+**CRM Dashboard**
+
+* 5-stage lead pipeline management
+* Inline status updates with AJAX
+* Live KPI stats & conversion tracking
+* Status filter tabs with lead counts
+* Quick notes & full activity log
+* Bulk status updates & CSV export
+* Date range filters & last activity tracking
+* Toast notifications & keyboard navigation
+
+**Analytics Dashboard**
+
+* Interactive leads & conversion charts
+* Pipeline funnel visualisation
+* Top source pages tracking
+* Live KPI summary dashboard
+* AJAX-powered date range filtering
+* Real-time analytics from your own database
+* No external tracking or third-party services
+
+**Plans start at just $3/month · 14-day free trial · 30-day money-back guarantee**
 
 🔥 **[Upgrade to WP LeadChat Pro →](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
@@ -188,12 +209,21 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 
 1. The floating chat widget - gradient header, avatar, animated popup, modern form fields, and a success message
 2. Leads dashboard - view, search, sort, and bulk-delete all captured leads inside WP Admin
-3. **PRO: Settings panel with live preview** - colour pickers, avatar upload, field toggles, and a real-time live preview sidebar
-4. **PRO: Custom Field Builder** - drag-and-drop fields with type selectors (Text, Dropdown, Checkbox, and more) and required-field toggles
+3. **PRO: Leads dashboard (CRM)** - the upgraded leads table with status badges, notes preview pills, Last Activity column, pipeline stats bar, status filter tabs, and date range filter
+4. **PRO: Status dropdown** - clicking a status badge opens the custom dropdown; selecting a new status saves instantly via AJAX and updates the badge colour in place
+5. **PRO: Lead detail modal - Notes tab** - the full notes activity log showing all notes newest-first with absolute timestamps, a delete button per note, and a clear empty state directing users to the inline quick-note
+6. **PRO: Analytics dashboard** - the full analytics page showing the KPI summary strip, Leads Over Time bar chart, Conversion Rate Trend line chart, Pipeline Funnel, and Top Source Pages table
+7. **PRO: Settings + live preview** - the full settings panel showing colour pickers, avatar upload, field toggles, and the live preview sidebar updating in real time as you type
+8. **PRO: Custom Field Builder + Spam Protection + Email notifications** - Drag-and-drop custom fields with Text, Dropdown, Checkbox & more, reorderable rows, spam protection and email notification
 
 ---
 
 == Changelog ==
+
+= 2.3.1 =
+* Add new screenshots of PRO Plugin
+* Make some content changes in the admin Upgrade to PRO page
+* Minor bug fixes and styling improvements
 
 = 2.3.0 =
 * Added: In-admin Upgrade to PRO page (WP Admin → NP Lead Chatbot → Upgrade to PRO) with feature list, Free vs PRO comparison table, and live preview link
@@ -260,11 +290,14 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 
 == Upgrade Notice ==
 
+= 2.3.1 =
+Add and change some content in the admin PRO upgrade page, and make some minor styling improvements
+
 = 2.3.0 =
 Adds an in-admin PRO upgrade page and a dismissible admin notice. No database changes - safe to upgrade.
 
 = 2.2.3 =
-Improved upgrade CTAs and added comparison table. Safe to upgrade.
+Improved upgrade CTAs and added a comparison table. Safe to upgrade.
 
 = 2.2.0 =
 Adds Pro upsell information. No database or functionality changes. Safe to upgrade.
