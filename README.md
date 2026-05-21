@@ -20,6 +20,12 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 
 ---
 
+## Compatibility
+
+- Tested with WordPress 7.0
+- Compatible with WooCommerce
+- Compatible with Elementor
+
 ## ✅ Free Features
 
 - Floating animated lead capture widget
@@ -168,6 +174,11 @@ Embeds the lead form inline anywhere - pages, posts, or widget areas.
 ---
 
 ## Changelog
+
+### 2.3.2
+- Updated plugin tags and improved short description for better discoverability
+- Fixed the floating widget close button styling issue
+- Tested compatibility with WordPress 7.0
 
 ### 2.3.1 
 - Add new screenshots of PRO Plugin

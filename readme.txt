@@ -1,18 +1,18 @@
 === Lead Capture Chat ===
 Contributors:      nitspatel
-Tags:              lead generation, chat widget, contact form, leads, floating widget, lead management,lead tracking
+Tags:              lead generation, chat widget, contact form, leads, lead tracking
 Requires at least: 6.0
-Tested up to:      6.9
+Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        2.3.1
+Stable tag:        2.3.2
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-A beautiful floating chat widget for WordPress. Collect visitor leads, manage them in your dashboard, and export to CSV - all without a SaaS dependency.
+Lead generation chat widget for WordPress with floating contact form, lead management, and CSV export.
 
 == Description ==
 
-Lead Capture Chat adds a polished, animated floating chat widget to your WordPress site. It captures every visitor's name, email, phone, and message, then stores each lead directly inside your WordPress admin.
+Lead generation chat widget for WordPress with a floating contact form and built-in lead management.
 
 No third-party services. No monthly SaaS fees. No data leaves your server.
 
@@ -220,6 +220,11 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 
 == Changelog ==
 
+= 2.3.2 =
+* Updated plugin tags and improved short description for better discoverability
+* Fixed the floating widget close button styling issue
+* Tested compatibility with WordPress 7.0
+
 = 2.3.1 =
 * Add new screenshots of PRO Plugin
 * Make some content changes in the admin Upgrade to PRO page
@@ -289,6 +294,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Upgrade Notice ==
+
+= 2.3.2 =
+Improved plugin discoverability and fixed floating widget close button styling issues
 
 = 2.3.1 =
 Add and change some content in the admin PRO upgrade page, and make some minor styling improvements
