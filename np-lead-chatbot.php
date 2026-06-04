@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       Lead Capture Chat
- * Plugin URI:        https://wordpress.org/plugins/wp-lead-chatbot/
+ * Plugin URI:        https://wordpress.org/plugins/np-lead-chatbot/
  * Description:       Convert visitors into leads with a chat-based form. Easy WordPress chatbot plugin for higher conversions.
- * Version:           2.3.2
+ * Version:           2.3.3
  * Author:            NitsPatel
  * Author URI:        https://github.com/NiteshPatel-1988
  * Text Domain:       np-lead-chatbot
@@ -23,9 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'NPLEADCHAT_PLUGIN_FILE', __FILE__ );
-define( 'NPLEADCHAT_VERSION',     '2.3.2' );
+define( 'NPLEADCHAT_VERSION',     '2.3.3' );
 define( 'NPLEADCHAT_DIR',         plugin_dir_path( __FILE__ ) );
 define( 'NPLEADCHAT_URL',         plugin_dir_url( __FILE__ ) );
+
 
 // ── Core files ────────────────────────────────────────────────────────────────
 require_once NPLEADCHAT_DIR . 'includes/class-npleadchat-activator.php';
@@ -46,6 +47,8 @@ register_deactivation_hook( __FILE__, array( 'NPLEADCHAT_Deactivator', 'npleadch
 
 // ── Bootstrap ─────────────────────────────────────────────────────────────────
 add_action( 'init', function () {
+	NPLEADCHAT_DB::npleadchat_maybe_upgrade();
+
 	if ( is_admin() ) {
 		NPLEADCHAT_Admin::npleadchat_init();
 

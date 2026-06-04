@@ -22,21 +22,50 @@ class NPLEADCHAT_DB {
             email varchar(191) NOT NULL,
             phone varchar(50) NOT NULL,
             message text NOT NULL,
+            source_url text NOT NULL,
             date datetime NOT NULL,
             PRIMARY KEY  (id)
         ) {$charset_collate};";
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta( $sql );
+        update_option( 'npleadchat_db_version', NPLEADCHAT_VERSION );
+    }
+
+    public static function npleadchat_maybe_upgrade() {
+        $db_version = get_option( 'npleadchat_db_version', '' );
+
+        if ( NPLEADCHAT_VERSION !== $db_version ) {
+            self::npleadchat_create_table();
+        }
     }
 
     public static function npleadchat_insert_lead( $data = array() ) {
         global $wpdb;
         $table = $wpdb->prefix . 'npleadchat_leads';
+        $data  = wp_parse_args(
+            $data,
+            array(
+                'name'       => '',
+                'email'      => '',
+                'phone'      => '',
+                'message'    => '',
+                'source_url' => '',
+                'date'       => current_time( 'mysql' ),
+            )
+        );
+
         $wpdb->insert(
             $table,
-            $data,
-            array( '%s', '%s', '%s', '%s', '%s' )
+            array(
+                'name'       => $data['name'],
+                'email'      => $data['email'],
+                'phone'      => $data['phone'],
+                'message'    => $data['message'],
+                'source_url' => $data['source_url'],
+                'date'       => $data['date'],
+            ),
+            array( '%s', '%s', '%s', '%s', '%s', '%s' )
         );
         return $wpdb->insert_id;
     }
@@ -57,7 +86,8 @@ class NPLEADCHAT_DB {
             // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             return $wpdb->get_results(
                 $wpdb->prepare(
-                    "SELECT * FROM `{$table}` WHERE name LIKE %s OR email LIKE %s OR phone LIKE %s OR message LIKE %s ORDER BY {$orderby} {$order}", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                    "SELECT * FROM `{$table}` WHERE name LIKE %s OR email LIKE %s OR phone LIKE %s OR message LIKE %s OR source_url LIKE %s ORDER BY {$orderby} {$order}", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                    $like,
                     $like,
                     $like,
                     $like,

@@ -11,8 +11,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb;
 $table = $wpdb->prefix . 'npleadchat_leads';
-$sql = $wpdb->prepare(
-    "DROP TABLE IF EXISTS `%i`",
-    $table
-);
-$wpdb->query( $sql );
+$wpdb->query( "DROP TABLE IF EXISTS `" . esc_sql( $table ) . "`" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+
+delete_option( 'npleadchat_options' );
+delete_option( 'npleadchat_db_version' );

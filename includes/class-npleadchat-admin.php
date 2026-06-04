@@ -14,12 +14,13 @@ class NPLEADCHAT_Admin {
     public static function npleadchat_init() {
         add_action( 'admin_menu',               array( __CLASS__, 'npleadchat_admin_menu' ) );
         add_action( 'admin_enqueue_scripts',    array( __CLASS__, 'npleadchat_enqueue' ) );
+        add_action( 'admin_init',               array( __CLASS__, 'npleadchat_register_settings' ) );
         add_action( 'admin_post_npleadchat_export_leads', array( __CLASS__, 'npleadchat_export_csv' ) );
     }
 
     public static function npleadchat_enqueue( $hook ) {
         // Only load on our own admin page.
-        if ( 'toplevel_page_npleadchat-leads' !== $hook ) {
+        if ( ! in_array( $hook, array( 'toplevel_page_npleadchat-leads', 'np-lead-chatbot_page_npleadchat-settings' ), true ) ) {
             return;
         }
         wp_enqueue_style(
@@ -38,6 +39,59 @@ class NPLEADCHAT_Admin {
             'npleadchat-leads',
             array( __CLASS__, 'npleadchat_render_page' ),
             'dashicons-format-chat'
+        );
+
+        add_submenu_page(
+            'npleadchat-leads',
+            esc_html__( 'Settings', 'np-lead-chatbot' ),
+            esc_html__( 'Settings', 'np-lead-chatbot' ),
+            'manage_options',
+            'npleadchat-settings',
+            array( __CLASS__, 'npleadchat_render_settings_page' )
+        );
+    }
+
+    public static function npleadchat_default_options() {
+        return array(
+            'enable_floating_widget' => 1,
+            'widget_title'           => __( 'Chat With Us', 'np-lead-chatbot' ),
+            'widget_subtitle'        => __( 'Fill in the form and we\'ll get back to you shortly.', 'np-lead-chatbot' ),
+            'online_status'          => __( 'We\'re online', 'np-lead-chatbot' ),
+            'success_message'        => __( 'Thanks! We\'ll be in touch soon.', 'np-lead-chatbot' ),
+        );
+    }
+
+    public static function npleadchat_get_options() {
+        $options = get_option( 'npleadchat_options', array() );
+
+        if ( ! is_array( $options ) ) {
+            $options = array();
+        }
+
+        return wp_parse_args( $options, self::npleadchat_default_options() );
+    }
+
+    public static function npleadchat_register_settings() {
+        register_setting(
+            'npleadchat_settings',
+            'npleadchat_options',
+            array(
+                'sanitize_callback' => array( __CLASS__, 'npleadchat_sanitize_options' ),
+                'default'           => self::npleadchat_default_options(),
+            )
+        );
+    }
+
+    public static function npleadchat_sanitize_options( $input ) {
+        $defaults = self::npleadchat_default_options();
+        $input    = is_array( $input ) ? $input : array();
+
+        return array(
+            'enable_floating_widget' => empty( $input['enable_floating_widget'] ) ? 0 : 1,
+            'widget_title'           => isset( $input['widget_title'] ) ? sanitize_text_field( $input['widget_title'] ) : $defaults['widget_title'],
+            'widget_subtitle'        => isset( $input['widget_subtitle'] ) ? sanitize_text_field( $input['widget_subtitle'] ) : $defaults['widget_subtitle'],
+            'online_status'          => isset( $input['online_status'] ) ? sanitize_text_field( $input['online_status'] ) : $defaults['online_status'],
+            'success_message'        => isset( $input['success_message'] ) ? sanitize_text_field( $input['success_message'] ) : $defaults['success_message'],
         );
     }
 
@@ -78,6 +132,78 @@ class NPLEADCHAT_Admin {
         <?php
     }
 
+    public static function npleadchat_render_settings_page() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die( esc_html__( 'Insufficient permissions.', 'np-lead-chatbot' ) );
+        }
+
+        $options = self::npleadchat_get_options();
+        ?>
+
+        <div class="wrap">
+            <h1><?php esc_html_e( 'NP Lead Chatbot Settings', 'np-lead-chatbot' ); ?></h1>
+
+            <form method="post" action="options.php">
+                <?php settings_fields( 'npleadchat_settings' ); ?>
+
+                <table class="form-table" role="presentation">
+                    <tr>
+                        <th scope="row"><?php esc_html_e( 'Floating Widget', 'np-lead-chatbot' ); ?></th>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="npleadchat_options[enable_floating_widget]" value="1" <?php checked( 1, $options['enable_floating_widget'] ); ?> />
+                                <?php esc_html_e( 'Show the floating chat widget on the site', 'np-lead-chatbot' ); ?>
+                            </label>
+                            <p class="description"><?php esc_html_e( 'The shortcode form still works when this is turned off.', 'np-lead-chatbot' ); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-widget-title"><?php esc_html_e( 'Widget Title', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="text" id="npleadchat-widget-title" name="npleadchat_options[widget_title]" class="regular-text" value="<?php echo esc_attr( $options['widget_title'] ); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-widget-subtitle"><?php esc_html_e( 'Inline Subtitle', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="text" id="npleadchat-widget-subtitle" name="npleadchat_options[widget_subtitle]" class="regular-text" value="<?php echo esc_attr( $options['widget_subtitle'] ); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-online-status"><?php esc_html_e( 'Online Status Text', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="text" id="npleadchat-online-status" name="npleadchat_options[online_status]" class="regular-text" value="<?php echo esc_attr( $options['online_status'] ); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-success-message"><?php esc_html_e( 'Success Message', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="text" id="npleadchat-success-message" name="npleadchat_options[success_message]" class="regular-text" value="<?php echo esc_attr( $options['success_message'] ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <?php submit_button(); ?>
+            </form>
+        </div>
+
+        <?php
+    }
+
+    private static function npleadchat_prepare_csv_cell( $value ) {
+        $value = (string) $value;
+
+        if ( '' !== $value && preg_match( '/^[=\-+@\t\r]/', $value ) ) {
+            return "'" . $value;
+        }
+
+        return $value;
+    }
+
+    private static function npleadchat_prepare_csv_row( array $row ) {
+        return array_map( array( __CLASS__, 'npleadchat_prepare_csv_cell' ), $row );
+    }
+
     public static function npleadchat_export_csv() {
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_die( esc_html__( 'Unauthorized access.', 'np-lead-chatbot' ) );
@@ -113,7 +239,7 @@ class NPLEADCHAT_Admin {
         fputcsv( $output, array_keys( $leads[0] ) );
 
         foreach ( $leads as $lead ) {
-            fputcsv( $output, $lead );
+            fputcsv( $output, self::npleadchat_prepare_csv_row( $lead ) );
         }
 
         fclose( $output ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose

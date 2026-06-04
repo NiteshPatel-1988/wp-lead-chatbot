@@ -105,13 +105,17 @@ class NPLEADCHAT_Upsell {
 					<li>&#x2705; <?php esc_html_e( 'Custom Field Builder', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Email Notifications', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Auto Replies', 'np-lead-chatbot' ); ?></li>
-					<li>&#x2705; <?php esc_html_e( 'Spam Protection', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Google reCAPTCHA v3 Spam Protection', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Full Appearance &amp; Branding Control', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Live Admin Preview', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Analytics Dashboard', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'CRM Dashboard', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Priority Support', 'np-lead-chatbot' ); ?></li>
 				</ul>
+
+				<p class="npleadchat-upsell-context">
+					<?php esc_html_e( 'Free already includes the floating widget, shortcode form, basic settings, lead source tracking, CSV export, and honeypot spam protection. PRO is best when you need automation, deeper customization, CRM workflow, analytics, and stronger anti-spam controls.', 'np-lead-chatbot' ); ?>
+				</p>
 
 				<hr>
 
@@ -129,8 +133,7 @@ class NPLEADCHAT_Upsell {
 					<tbody>
 						<?php
 						$rows = array(
-
-						   array(
+							array(
 								esc_html__( 'Floating chat widget',      'np-lead-chatbot' ),
 								'&#x2705;',
 								'&#x2705;',
@@ -147,6 +150,21 @@ class NPLEADCHAT_Upsell {
 							),
 							array(
 								esc_html__( 'CSV Export',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Basic settings',      'np-lead-chatbot' ),
+								'&#x2705;',
+								esc_html__( 'Advanced', 'np-lead-chatbot' ),
+							),
+							array(
+								esc_html__( 'Lead source page tracking',      'np-lead-chatbot' ),
+								'&#x2705;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Honeypot spam protection',       'np-lead-chatbot' ),
 								'&#x2705;',
 								'&#x2705;',
 							),
@@ -171,7 +189,7 @@ class NPLEADCHAT_Upsell {
 								'&#x2705;',
 							),
 							array(
-								esc_html__( 'Spam Protection',       'np-lead-chatbot' ),
+								esc_html__( 'Google reCAPTCHA v3',       'np-lead-chatbot' ),
 								'&#x274C;',
 								'&#x2705;',
 							),
@@ -181,7 +199,17 @@ class NPLEADCHAT_Upsell {
 								esc_html__( 'Full',  'np-lead-chatbot' ),
 							),
 							array(
-								esc_html__( 'Spam Protection',       'np-lead-chatbot' ),
+								esc_html__( 'Live admin preview',       'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Lead status pipeline',       'np-lead-chatbot' ),
+								'&#x274C;',
+								'&#x2705;',
+							),
+							array(
+								esc_html__( 'Notes and activity log',       'np-lead-chatbot' ),
 								'&#x274C;',
 								'&#x2705;',
 							),
@@ -247,7 +275,12 @@ class NPLEADCHAT_Upsell {
 		.npleadchat-upsell-card hr   { margin: 24px 0; border: none; border-top: 1px solid #e5e5e5; }
 		.npleadchat-upsell-benefits  { margin: 12px 0 0; padding: 0 0 0 4px; list-style: none; }
 		.npleadchat-upsell-benefits li { font-size: .95em; line-height: 2; }
+		.npleadchat-upsell-context   { margin: 18px 0 0; max-width: 760px; color: #555; line-height: 1.6; }
 		.npleadchat-compare-table    { margin-top: 16px; }
+		.npleadchat-compare-table th:first-child,
+		.npleadchat-compare-table td:first-child { width: 48%; }
+		.npleadchat-compare-table th:not(:first-child),
+		.npleadchat-compare-table td:not(:first-child) { text-align: center; }
 		.npleadchat-upsell-actions   { margin-top: 28px; }
 		.npleadchat-upsell-actions .button { margin-right: 10px; }
 		.npleadchat-upsell-note      { margin-top: 14px; color: #777; font-size: .85em; }
@@ -296,7 +329,7 @@ class NPLEADCHAT_Upsell {
 				<?php
 				printf(
 					/* translators: 1: opening <strong> tag, 2: closing </strong> tag, 3: upgrade link HTML */
-					esc_html__( '%1$sLead Capture Chat PRO%2$s - unlock custom fields, email notifications, spam protection, unlimited leads, and more. %3$s', 'np-lead-chatbot' ),
+					esc_html__( '%1$sLead Capture Chat PRO%2$s - unlock custom fields, email notifications, Google reCAPTCHA v3, unlimited leads, analytics, and more. %3$s', 'np-lead-chatbot' ),
 					'<strong>',
 					'</strong>',
 					sprintf(

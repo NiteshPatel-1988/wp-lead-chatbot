@@ -1,0 +1,396 @@
+﻿# Copyright (C) 2026 NitsPatel
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Lead Capture Chat 2.3.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/np-lead-chatbot\n"
+"POT-Creation-Date: 2026-05-24 10:04:45+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Codex PowerShell extractor\n"
+"X-Domain: np-lead-chatbot\n"
+
+#: admin/class-npleadchat-upsell.php:332
+msgid "%1$sLead Capture Chat PRO%2$s - unlock custom fields, email notifications, Google reCAPTCHA v3, unlimited leads, analytics, and more. %3$s"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:158
+msgid "+1 (555) 000-0000"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:159
+msgid "Advanced"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:111
+#: admin/class-npleadchat-upsell.php:217
+msgid "Analytics Dashboard"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:197
+msgid "Appearance Control"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:107
+#: admin/class-npleadchat-upsell.php:187
+msgid "Auto Replies"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:198
+msgid "Basic"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:157
+msgid "Basic settings"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:57
+msgid "Chat With Us"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:122
+msgid "Close chat"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:99
+msgid "Contact form"
+msgstr ""
+
+#: np-lead-chatbot.php:5
+msgid "Convert visitors into leads with a chat-based form. Easy WordPress chatbot plugin for higher conversions."
+msgstr ""
+
+#: includes/class-npleadchat-api.php:68
+msgid "Could not save lead"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:112
+#: admin/class-npleadchat-upsell.php:222
+msgid "CRM Dashboard"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:152
+msgid "CSV Export"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:105
+msgid "Custom Field Builder"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:177
+msgid "Custom Fields"
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:34
+msgid "Date"
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:54
+msgid "Delete"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:343
+msgid "Dismiss"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:251
+msgid "ðŸš€ Upgrade to PRO"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:258
+msgid "ðŸŽ¨ Live Preview"
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:30
+msgid "Email"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:151
+msgid "Email Address"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:106
+#: admin/class-npleadchat-upsell.php:182
+msgid "Email Notifications"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:117
+msgid "Export Leads (CSV)"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:128
+msgid "Feature"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:58
+msgid "Fill in the form and we'll get back to you shortly."
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:137
+msgid "Floating chat widget"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:151
+msgid "Floating Widget"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:129
+msgid "Free"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:117
+msgid "Free already includes the floating widget, shortcode form, basic settings, lead source tracking, CSV export, and honeypot spam protection. PRO is best when you need automation, deeper customization, CRM workflow, analytics, and stronger anti-spam controls."
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:123
+msgid "Free vs PRO"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:199
+msgid "Full"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:109
+msgid "Full Appearance &amp; Branding Control"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:192
+msgid "Google reCAPTCHA v3"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:108
+msgid "Google reCAPTCHA v3 Spam Protection"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:167
+msgid "Honeypot spam protection"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:164
+msgid "How can we help you?"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:142
+msgid "Inline shortcode"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:167
+msgid "Inline Subtitle"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:81
+#: includes/class-npleadchat-admin.php:100
+#: includes/class-npleadchat-admin.php:137
+#: includes/class-npleadchat-leads-table.php:67
+msgid "Insufficient permissions."
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:146
+msgid "Jane Smith"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:152
+msgid "jane@example.com"
+msgstr ""
+
+#: np-lead-chatbot.php:3
+msgid "Lead Capture Chat"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:162
+msgid "Lead source page tracking"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:207
+msgid "Lead status pipeline"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:111
+msgid "Leads"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:110
+#: admin/class-npleadchat-upsell.php:202
+msgid "Live Admin Preview"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:163
+#: includes/class-npleadchat-leads-table.php:32
+msgid "Message"
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:29
+msgid "Name"
+msgstr ""
+
+#: includes/class-npleadchat-api.php:46
+msgid "Name and email are required."
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:225
+msgid "No leads found."
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:219
+msgid "Nonce verification failed."
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:212
+msgid "Notes and activity log"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:36
+#: includes/class-npleadchat-admin.php:37
+msgid "NP Lead Chatbot"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:144
+msgid "NP Lead Chatbot Settings"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:173
+msgid "Online Status Text"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:84
+msgid "Open chat"
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:31
+msgid "Phone"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:157
+msgid "Phone Number"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:263
+msgid "Plans start at just $3/month Â· 14-day free trial Â· 30-day money-back guarantee"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:42
+msgid "Please enter a message."
+msgstr ""
+
+#: includes/class-npleadchat-api.php:50
+#: includes/class-npleadchat-frontend.php:40
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:39
+msgid "Please enter your email address."
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:38
+msgid "Please enter your name."
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:41
+msgid "Please enter your phone number."
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:133
+msgid "Powered by NP Lead Chatbot"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:113
+#: admin/class-npleadchat-upsell.php:227
+msgid "Priority Support"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:130
+msgid "PRO"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:147
+msgid "Search & sort"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:126
+msgid "Search Leads"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:178
+msgid "Send Message"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:46
+#: includes/class-npleadchat-admin.php:47
+msgid "Settings"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:155
+msgid "Show the floating chat widget on the site"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:44
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/class-npleadchat-leads-table.php:33
+msgid "Source Page"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:179
+msgid "Success Message"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:60
+#: includes/class-npleadchat-frontend.php:43
+msgid "Thanks! We'll be in touch soon."
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:157
+msgid "The shortcode form still works when this is turned off."
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:209
+msgid "Unauthorized access."
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:104
+#: admin/class-npleadchat-upsell.php:172
+msgid "Unlimited Leads"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:95
+msgid "Unlock powerful lead generation features and grow your business faster."
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:338
+msgid "Upgrade Now â†’"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:91
+msgid "Upgrade to Lead Capture Chat PRO ðŸš€"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:65
+msgid "Upgrade to PRO - Lead Capture Chat"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:67
+msgid "Upgrade to PRO ðŸš€"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:169
+msgid "Website"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:59
+msgid "We're online"
+msgstr ""
+
+#: admin/class-npleadchat-upsell.php:101
+msgid "Why Upgrade?"
+msgstr ""
+
+#: includes/class-npleadchat-admin.php:161
+msgid "Widget Title"
+msgstr ""
+
+#: includes/class-npleadchat-frontend.php:145
+msgid "Your Name"
+msgstr ""
+

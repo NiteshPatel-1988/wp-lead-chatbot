@@ -4,7 +4,7 @@ Tags:              lead generation, chat widget, contact form, leads, lead track
 Requires at least: 6.0
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        2.3.2
+Stable tag:        2.3.3
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,8 @@ Lead generation chat widget for WordPress with a floating contact form and built
 
 No third-party services. No monthly SaaS fees. No data leaves your server.
 
-🚀 **[Live Demo & PRO Features Preview](https://leadcapturechat.netlify.app/)**
-🎥 **[Watch the PRO Demo Video](https://go.screenpal.com/watch/cOhYQKntkfx)**
+🚀 **[PRO Features Preview](https://leadcapturechat.netlify.app/)**
+🎥 **[Watch the PRO Demo Video](https://www.youtube.com/watch?v=LFD65u6pn34)**
 🔥 **[Upgrade to WP LeadChat Pro](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
@@ -27,6 +27,9 @@ No third-party services. No monthly SaaS fees. No data leaves your server.
 * **Floating chat widget** - animated slide-up popup triggered by a fixed button in the corner of every page
 * **Inline shortcode** - embed the form anywhere with `[npleadchat]`
 * **Leads dashboard** - view, search, sort, and manage all leads from WP Admin → NP Lead chatbot
+* **Basic settings** - enable or disable the floating widget and edit the main widget messages
+* **Lead source page** - see which page each lead came from
+* **Honeypot spam protection** - lightweight hidden-field protection with no external service
 * **Bulk actions** - select and delete multiple leads at once
 * **Search & sort** - find leads by name, email, phone, or message; sort by name or date
 * **Client-side validation** - instant feedback before form submission
@@ -56,7 +59,6 @@ WP LeadChat Pro turns your simple floating widget into a complete lead generatio
 
 **Spam Protection**
 
-* Honeypot anti-spam field
 * Google reCAPTCHA v3 support
 
 **Appearance & Branding**
@@ -179,7 +181,7 @@ Admin notifications and visitor auto-replies are included in WP LeadChat Pro.
 
 = Is spam protection included? =
 
-WP LeadChat Pro includes Honeypot and Google reCAPTCHA v3 protection.
+The free version includes lightweight honeypot spam protection. WP LeadChat Pro adds Google reCAPTCHA v3 protection.
 
 = Will my existing free leads transfer to PRO? =
 
@@ -219,6 +221,11 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Changelog ==
+
+= 2.3.3 =
+* Added basic settings for floating widget visibility and messages
+* Added lead source page tracking in the leads dashboard and CSV export
+* Added lightweight honeypot spam protection
 
 = 2.3.2 =
 * Updated plugin tags and improved short description for better discoverability
@@ -294,6 +301,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Upgrade Notice ==
+
+= 2.3.3 =
+Added floating widget settings, lead source tracking with CSV export, and lightweight honeypot spam protection.
 
 = 2.3.2 =
 Improved plugin discoverability and fixed floating widget close button styling issues

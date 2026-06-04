@@ -23,9 +23,8 @@ class NPLEADCHAT_API {
     }
 
     public static function npleadchat_permission_check( $request ) {
-        $nonce = isset( $_SERVER['HTTP_X_WP_NONCE'] )
-            ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) )
-            : '';
+        $nonce = sanitize_text_field( $request->get_header( 'x_wp_nonce' ) );
+
         return wp_verify_nonce( $nonce, 'wp_rest' );
     }
 
@@ -36,9 +35,19 @@ class NPLEADCHAT_API {
         $email = isset( $params['email'] ) ? sanitize_email( $params['email'] ) : '';
         $phone = isset( $params['phone'] ) ? sanitize_text_field( $params['phone'] ) : '';
         $message = isset( $params['message'] ) ? sanitize_textarea_field( $params['message'] ) : '';
+        $source_url = isset( $params['source_url'] ) ? esc_url_raw( $params['source_url'] ) : '';
+        $honeypot = isset( $params['website'] ) ? sanitize_text_field( $params['website'] ) : '';
+
+        if ( ! empty( $honeypot ) ) {
+            return rest_ensure_response( array( 'success' => true, 'message' => NPLEADCHAT_Admin::npleadchat_get_options()['success_message'] ) );
+        }
 
         if ( empty( $name ) || empty( $email ) ) {
             return rest_ensure_response( array( 'success' => false, 'message' => __( 'Name and email are required.', 'np-lead-chatbot' ) ) );
+        }
+
+        if ( ! is_email( $email ) ) {
+            return rest_ensure_response( array( 'success' => false, 'message' => __( 'Please enter a valid email address.', 'np-lead-chatbot' ) ) );
         }
 
         $data = array(
@@ -46,13 +55,14 @@ class NPLEADCHAT_API {
             'email' => $email,
             'phone' => $phone,
             'message' => $message,
+            'source_url' => $source_url,
             'date' => current_time( 'mysql' ),
         );
 
         $id = NPLEADCHAT_DB::npleadchat_insert_lead( $data );
 
         if ( $id ) {
-            return rest_ensure_response( array( 'success' => true, 'message' => __( 'Lead successfully saved.', 'np-lead-chatbot' ), 'id' => $id ) );
+            return rest_ensure_response( array( 'success' => true, 'message' => NPLEADCHAT_Admin::npleadchat_get_options()['success_message'], 'id' => $id ) );
         }
 
         return rest_ensure_response( array( 'success' => false, 'message' => __( 'Could not save lead', 'np-lead-chatbot' ) ) );

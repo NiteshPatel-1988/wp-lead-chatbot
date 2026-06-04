@@ -2,7 +2,7 @@
 
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
-![Version](https://img.shields.io/badge/Version-2.3.0-orange)
+![Version](https://img.shields.io/badge/Version-2.3.3-orange)
 ![License](https://img.shields.io/badge/License-GPLv2-green)
 
 A modern floating lead capture chat widget for WordPress. Collect visitor leads directly on your site and manage everything inside your WordPress dashboard - no SaaS, no monthly dependency, no data leaving your server.
@@ -14,9 +14,9 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 | | |
 |---|---|
 | 🌐 Live Demo & PRO Preview | https://leadcapturechat.netlify.app/ |
-| 🎥 Watch the PRO Demo | https://go.screenpal.com/watch/cOhYQKntkfx |
+| 🎥 Watch the PRO Demo | https://www.youtube.com/watch?v=LFD65u6pn34 |
 | 🚀 Upgrade to PRO | https://checkout.freemius.com/plugin/29207/plan/48049/ |
-| 🔌 WordPress.org Plugin Page | https://wordpress.org/plugins/wp-lead-chatbot/ |
+| 🔌 WordPress.org Plugin Page | https://wordpress.org/plugins/np-lead-chatbot/ |
 
 ---
 
@@ -31,6 +31,9 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 - Floating animated lead capture widget
 - Inline shortcode - `[npleadchat]`
 - Leads dashboard with search, sorting, and bulk delete
+- Basic settings for widget visibility and messages
+- Lead source page tracking
+- Honeypot spam protection
 - CSV export
 - Client-side validation
 - REST API powered with nonce verification
@@ -55,7 +58,6 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 - Custom sender identity
 
 ### Spam Protection
-- Honeypot field
 - Google reCAPTCHA v3
 
 ### Appearance & Branding
@@ -95,11 +97,14 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 | Floating Chat Widget | ✅ | ✅ |
 | Inline Shortcode | ✅ | ✅ |
 | CSV Export | ✅ | ✅ |
+| Basic Settings | ✅ | Full |
+| Lead Source Page | ✅ | ✅ |
 | Unlimited Leads | ❌ | ✅ |
 | Custom Fields | ❌ | ✅ |
 | Email Notifications | ❌ | ✅ |
 | Auto Replies | ❌ | ✅ |
-| Spam Protection | ❌ | ✅ |
+| Honeypot Spam Protection | ✅ | ✅ |
+| Google reCAPTCHA v3 | ❌ | ✅ |
 | Appearance Control | Basic | Full |
 | Live Admin Preview | ❌ | ✅ |
 | CRM Dashboard | ❌ | ✅ |
@@ -174,6 +179,11 @@ Embeds the lead form inline anywhere - pages, posts, or widget areas.
 ---
 
 ## Changelog
+
+### 2.3.3
+- Added basic settings for floating widget visibility and messages
+- Added lead source page tracking in the leads dashboard and CSV export
+- Added lightweight honeypot spam protection
 
 ### 2.3.2
 - Updated plugin tags and improved short description for better discoverability

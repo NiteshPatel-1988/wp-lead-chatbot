@@ -31,8 +31,18 @@ class NPLEADCHAT_Frontend {
             true
         );
         wp_localize_script( 'npleadchat-frontend-js', 'npleadchat_api', array(
-            'url'   => esc_url_raw( rest_url( 'npleadchat/v1/lead' ) ),
-            'nonce' => wp_create_nonce( 'wp_rest' ),
+            'url'            => esc_url_raw( rest_url( 'npleadchat/v1/lead' ) ),
+            'nonce'          => wp_create_nonce( 'wp_rest' ),
+            'successMessage' => NPLEADCHAT_Admin::npleadchat_get_options()['success_message'],
+            'i18n'           => array(
+                'nameRequired'    => __( 'Please enter your name.', 'np-lead-chatbot' ),
+                'emailRequired'   => __( 'Please enter your email address.', 'np-lead-chatbot' ),
+                'emailInvalid'    => __( 'Please enter a valid email address.', 'np-lead-chatbot' ),
+                'phoneRequired'   => __( 'Please enter your phone number.', 'np-lead-chatbot' ),
+                'messageRequired' => __( 'Please enter a message.', 'np-lead-chatbot' ),
+                'fallbackSuccess' => __( 'Thanks! We\'ll be in touch soon.', 'np-lead-chatbot' ),
+                'fallbackError'   => __( 'Something went wrong. Please try again.', 'np-lead-chatbot' ),
+            ),
         ) );
     }
 
@@ -40,13 +50,15 @@ class NPLEADCHAT_Frontend {
      * Shortcode output — inline embed with its own header.
      */
     public static function npleadchat_bot_ui() {
+        $options = NPLEADCHAT_Admin::npleadchat_get_options();
+
         ob_start(); ?>
 
         <div id="wlc-chatbot" class="nlc-inline-mode">
 
             <div class="nlc-inline-header">
-                <h3><?php esc_html_e( 'Chat With Us', 'np-lead-chatbot' ); ?></h3>
-                <p><?php esc_html_e( 'Fill in the form and we\'ll get back to you shortly.', 'np-lead-chatbot' ); ?></p>
+                <h3><?php echo esc_html( $options['widget_title'] ); ?></h3>
+                <p><?php echo esc_html( $options['widget_subtitle'] ); ?></p>
             </div>
 
             <div class="nlc-form-body">
@@ -62,6 +74,12 @@ class NPLEADCHAT_Frontend {
      * Floating widget injected into footer.
      */
     public static function npleadfloating_widget() {
+        $options = NPLEADCHAT_Admin::npleadchat_get_options();
+
+        if ( empty( $options['enable_floating_widget'] ) ) {
+            return;
+        }
+
         /* Floating trigger button */
         echo '<div id="wlc-floating-btn" role="button" aria-label="' . esc_attr__( 'Open chat', 'np-lead-chatbot' ) . '" tabindex="0">';
 
@@ -93,10 +111,10 @@ class NPLEADCHAT_Frontend {
 
                     /* Title + status */
                     echo '<div class="nlc-header-info">';
-                    echo '<h3 class="nlc-header-title">' . esc_html__( 'Chat With Us', 'np-lead-chatbot' ) . '</h3>';
+                    echo '<h3 class="nlc-header-title">' . esc_html( $options['widget_title'] ) . '</h3>';
                     echo '<div class="nlc-header-status">';
                     echo '<span class="nlc-status-dot"></span>';
-                    echo '<span class="nlc-status-text">' . esc_html__( 'We\'re online', 'np-lead-chatbot' ) . '</span>';
+                    echo '<span class="nlc-status-text">' . esc_html( $options['online_status'] ) . '</span>';
                     echo '</div>';
                     echo '</div>';
 
@@ -145,6 +163,11 @@ class NPLEADCHAT_Frontend {
             <label class="nlc-label" for="wlc-message"><?php esc_html_e( 'Message', 'np-lead-chatbot' ); ?></label>
             <textarea id="wlc-message" placeholder="<?php esc_attr_e( 'How can we help you?', 'np-lead-chatbot' ); ?>"></textarea>
             <span class="wlc-error" id="wlc-message-error" role="alert"></span>
+        </div>
+
+        <div class="nlc-hp-field" aria-hidden="true">
+            <label for="wlc-website"><?php esc_html_e( 'Website', 'np-lead-chatbot' ); ?></label>
+            <input type="text" id="wlc-website" tabindex="-1" autocomplete="off">
         </div>
 
         <button id="wlc-submit">

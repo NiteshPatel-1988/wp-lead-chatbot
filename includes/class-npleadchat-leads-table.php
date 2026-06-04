@@ -30,6 +30,7 @@ class NPLEADCHAT_Leads_Table extends WP_List_Table {
             'email'   => __( 'Email',   'np-lead-chatbot' ),
             'phone'   => __( 'Phone',   'np-lead-chatbot' ),
             'message' => __( 'Message', 'np-lead-chatbot' ),
+            'source_url' => __( 'Source Page', 'np-lead-chatbot' ),
             'date'    => __( 'Date',    'np-lead-chatbot' ),
         );
     }
@@ -112,5 +113,17 @@ class NPLEADCHAT_Leads_Table extends WP_List_Table {
 
     public function column_default( $item, $column_name ) {
         return esc_html( $item->$column_name ?? '' );
+    }
+
+    public function column_source_url( $item ) {
+        if ( empty( $item->source_url ) ) {
+            return '&mdash;';
+        }
+
+        return sprintf(
+            '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
+            esc_url( $item->source_url ),
+            esc_html( wp_parse_url( $item->source_url, PHP_URL_PATH ) ?: $item->source_url )
+        );
     }
 }
