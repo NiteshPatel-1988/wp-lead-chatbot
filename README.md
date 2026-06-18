@@ -2,7 +2,7 @@
 
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
-![Version](https://img.shields.io/badge/Version-2.3.3-orange)
+![Version](https://img.shields.io/badge/Version-2.3.4-orange)
 ![License](https://img.shields.io/badge/License-GPLv2-green)
 
 A modern floating lead capture chat widget for WordPress. Collect visitor leads directly on your site and manage everything inside your WordPress dashboard - no SaaS, no monthly dependency, no data leaving your server.
@@ -32,8 +32,10 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 - Inline shortcode - `[npleadchat]`
 - Leads dashboard with search, sorting, and bulk delete
 - Basic settings for widget visibility and messages
+- Basic admin email notifications
 - Lead source page tracking
 - Honeypot spam protection
+- Configurable spam cooldown and duplicate submission protection
 - CSV export
 - Client-side validation
 - REST API powered with nonce verification
@@ -52,7 +54,7 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 - Live admin preview
 
 ### Email Automation
-- Admin notification emails
+- Advanced admin notification templates
 - Visitor auto-replies
 - Template tag support
 - Custom sender identity
@@ -101,9 +103,10 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 | Lead Source Page | ✅ | ✅ |
 | Unlimited Leads | ❌ | ✅ |
 | Custom Fields | ❌ | ✅ |
-| Email Notifications | ❌ | ✅ |
+| Email Notifications | Basic | Advanced |
 | Auto Replies | ❌ | ✅ |
 | Honeypot Spam Protection | ✅ | ✅ |
+| Spam Cooldown | ✅ | ✅ |
 | Google reCAPTCHA v3 | ❌ | ✅ |
 | Appearance Control | Basic | Full |
 | Live Admin Preview | ❌ | ✅ |
@@ -179,6 +182,11 @@ Embeds the lead form inline anywhere - pages, posts, or widget areas.
 ---
 
 ## Changelog
+
+### 2.3.4
+- Added basic admin email notifications with recipient setting
+- Added configurable spam cooldown and duplicate submission protection
+- Improved frontend form accessibility by removing duplicate field IDs across shortcode and floating widget instances
 
 ### 2.3.3
 - Added basic settings for floating widget visibility and messages

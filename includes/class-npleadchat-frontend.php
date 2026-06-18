@@ -54,7 +54,7 @@ class NPLEADCHAT_Frontend {
 
         ob_start(); ?>
 
-        <div id="wlc-chatbot" class="nlc-inline-mode">
+        <div class="nlc-chatbot nlc-inline-mode">
 
             <div class="nlc-inline-header">
                 <h3><?php echo esc_html( $options['widget_title'] ); ?></h3>
@@ -125,7 +125,7 @@ class NPLEADCHAT_Frontend {
             echo '</div>';
 
             /* Form */
-            echo '<div id="wlc-chatbot">';
+            echo '<div class="nlc-chatbot">';
             echo self::npleadchat_form_fields();
             echo '</div>';
 
@@ -139,38 +139,45 @@ class NPLEADCHAT_Frontend {
      * Shared form fields HTML (used in both shortcode and floating widget).
      */
     private static function npleadchat_form_fields() {
+        static $instance = 0;
+
+        $instance++;
+        $prefix = 'wlc-' . $instance . '-';
+
         ob_start(); ?>
 
         <div class="nlc-field">
-            <label class="nlc-label" for="wlc-name"><?php esc_html_e( 'Your Name', 'np-lead-chatbot' ); ?></label>
-            <input type="text" id="wlc-name" placeholder="<?php esc_attr_e( 'Jane Smith', 'np-lead-chatbot' ); ?>" autocomplete="name">
-            <span class="wlc-error" id="wlc-name-error" role="alert"></span>
+            <label class="nlc-label" for="<?php echo esc_attr( $prefix . 'name' ); ?>"><?php esc_html_e( 'Your Name', 'np-lead-chatbot' ); ?></label>
+            <input type="text" id="<?php echo esc_attr( $prefix . 'name' ); ?>" data-nlc-field="name" placeholder="<?php esc_attr_e( 'Jane Smith', 'np-lead-chatbot' ); ?>" autocomplete="name">
+            <span class="wlc-error" data-nlc-error="name" role="alert"></span>
         </div>
 
         <div class="nlc-field">
-            <label class="nlc-label" for="wlc-email"><?php esc_html_e( 'Email Address', 'np-lead-chatbot' ); ?></label>
-            <input type="email" id="wlc-email" placeholder="<?php esc_attr_e( 'jane@example.com', 'np-lead-chatbot' ); ?>" autocomplete="email">
-            <span class="wlc-error" id="wlc-email-error" role="alert"></span>
+            <label class="nlc-label" for="<?php echo esc_attr( $prefix . 'email' ); ?>"><?php esc_html_e( 'Email Address', 'np-lead-chatbot' ); ?></label>
+            <input type="email" id="<?php echo esc_attr( $prefix . 'email' ); ?>" data-nlc-field="email" placeholder="<?php esc_attr_e( 'jane@example.com', 'np-lead-chatbot' ); ?>" autocomplete="email">
+            <span class="wlc-error" data-nlc-error="email" role="alert"></span>
         </div>
 
         <div class="nlc-field">
-            <label class="nlc-label" for="wlc-phone"><?php esc_html_e( 'Phone Number', 'np-lead-chatbot' ); ?></label>
-            <input type="text" id="wlc-phone" placeholder="<?php esc_attr_e( '+1 (555) 000-0000', 'np-lead-chatbot' ); ?>" autocomplete="tel">
-            <span class="wlc-error" id="wlc-phone-error" role="alert"></span>
+            <label class="nlc-label" for="<?php echo esc_attr( $prefix . 'phone' ); ?>"><?php esc_html_e( 'Phone Number', 'np-lead-chatbot' ); ?></label>
+            <input type="text" id="<?php echo esc_attr( $prefix . 'phone' ); ?>" data-nlc-field="phone" placeholder="<?php esc_attr_e( '+1 (555) 000-0000', 'np-lead-chatbot' ); ?>" autocomplete="tel">
+            <span class="wlc-error" data-nlc-error="phone" role="alert"></span>
         </div>
 
         <div class="nlc-field">
-            <label class="nlc-label" for="wlc-message"><?php esc_html_e( 'Message', 'np-lead-chatbot' ); ?></label>
-            <textarea id="wlc-message" placeholder="<?php esc_attr_e( 'How can we help you?', 'np-lead-chatbot' ); ?>"></textarea>
-            <span class="wlc-error" id="wlc-message-error" role="alert"></span>
+            <label class="nlc-label" for="<?php echo esc_attr( $prefix . 'message' ); ?>"><?php esc_html_e( 'Message', 'np-lead-chatbot' ); ?></label>
+            <textarea id="<?php echo esc_attr( $prefix . 'message' ); ?>" data-nlc-field="message" placeholder="<?php esc_attr_e( 'How can we help you?', 'np-lead-chatbot' ); ?>"></textarea>
+            <span class="wlc-error" data-nlc-error="message" role="alert"></span>
         </div>
 
         <div class="nlc-hp-field" aria-hidden="true">
-            <label for="wlc-website"><?php esc_html_e( 'Website', 'np-lead-chatbot' ); ?></label>
-            <input type="text" id="wlc-website" tabindex="-1" autocomplete="off">
+            <label for="<?php echo esc_attr( $prefix . 'website' ); ?>"><?php esc_html_e( 'Website', 'np-lead-chatbot' ); ?></label>
+            <input type="text" id="<?php echo esc_attr( $prefix . 'website' ); ?>" data-nlc-field="website" tabindex="-1" autocomplete="off">
         </div>
 
-        <button id="wlc-submit">
+        <input type="hidden" data-nlc-field="form_started_at" value="<?php echo esc_attr( time() ); ?>">
+
+        <button type="button" class="wlc-submit">
             <span class="nlc-btn-text">
                 <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
                     <path d="M3 10l14-7-7 14-2-5-5-2z" fill="white"/>
@@ -180,7 +187,7 @@ class NPLEADCHAT_Frontend {
             <span class="nlc-spinner" aria-hidden="true"></span>
         </button>
 
-        <div id="wlc-response" role="status" aria-live="polite"></div>
+        <div class="wlc-response" role="status" aria-live="polite"></div>
 
         <?php return ob_get_clean();
     }

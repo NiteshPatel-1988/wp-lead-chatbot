@@ -4,7 +4,7 @@ Tags:              lead generation, chat widget, contact form, leads, lead track
 Requires at least: 6.0
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        2.3.3
+Stable tag:        2.3.4
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,8 +28,10 @@ No third-party services. No monthly SaaS fees. No data leaves your server.
 * **Inline shortcode** - embed the form anywhere with `[npleadchat]`
 * **Leads dashboard** - view, search, sort, and manage all leads from WP Admin → NP Lead chatbot
 * **Basic settings** - enable or disable the floating widget and edit the main widget messages
+* **Basic email notifications** - send a simple admin email whenever a new lead is captured
 * **Lead source page** - see which page each lead came from
 * **Honeypot spam protection** - lightweight hidden-field protection with no external service
+* **Spam rate limiting** - configurable cooldown plus duplicate submission protection
 * **Bulk actions** - select and delete multiple leads at once
 * **Search & sort** - find leads by name, email, phone, or message; sort by name or date
 * **Client-side validation** - instant feedback before form submission
@@ -52,7 +54,7 @@ WP LeadChat Pro turns your simple floating widget into a complete lead generatio
 
 **Email Automation**
 
-* Instant admin notifications on every new lead
+* Advanced admin notification templates
 * Automatic visitor auto-replies
 * Template tag support (name, email, message, etc.)
 * Custom sender identity
@@ -177,7 +179,7 @@ Yes. WP LeadChat Pro includes a drag-and-drop Custom Field Builder supporting te
 
 = Does it support email notifications? =
 
-Admin notifications and visitor auto-replies are included in WP LeadChat Pro.
+Yes. The free version includes simple admin notifications for new leads. Advanced notification templates, custom sender controls, and visitor auto-replies are included in WP LeadChat Pro.
 
 = Is spam protection included? =
 
@@ -221,6 +223,11 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Changelog ==
+
+= 2.3.4 =
+* Added basic admin email notifications with recipient setting
+* Added configurable spam cooldown and duplicate submission protection
+* Improved frontend form accessibility by removing duplicate field IDs across shortcode and floating widget instances
 
 = 2.3.3 =
 * Added basic settings for floating widget visibility and messages
@@ -301,6 +308,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Upgrade Notice ==
+
+= 2.3.4 =
+Adds basic admin email notifications, spam cooldown protection, duplicate submission protection, and safer multi-instance form markup.
 
 = 2.3.3 =
 Added floating widget settings, lead source tracking with CSV export, and lightweight honeypot spam protection.

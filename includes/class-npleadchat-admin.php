@@ -54,6 +54,9 @@ class NPLEADCHAT_Admin {
     public static function npleadchat_default_options() {
         return array(
             'enable_floating_widget' => 1,
+            'enable_notifications'    => 1,
+            'notification_email'       => get_option( 'admin_email' ),
+            'rate_limit_seconds'       => 60,
             'widget_title'           => __( 'Chat With Us', 'np-lead-chatbot' ),
             'widget_subtitle'        => __( 'Fill in the form and we\'ll get back to you shortly.', 'np-lead-chatbot' ),
             'online_status'          => __( 'We\'re online', 'np-lead-chatbot' ),
@@ -88,6 +91,9 @@ class NPLEADCHAT_Admin {
 
         return array(
             'enable_floating_widget' => empty( $input['enable_floating_widget'] ) ? 0 : 1,
+            'enable_notifications'    => empty( $input['enable_notifications'] ) ? 0 : 1,
+            'notification_email'       => isset( $input['notification_email'] ) && is_email( $input['notification_email'] ) ? sanitize_email( $input['notification_email'] ) : $defaults['notification_email'],
+            'rate_limit_seconds'       => isset( $input['rate_limit_seconds'] ) ? max( 10, min( 3600, absint( $input['rate_limit_seconds'] ) ) ) : $defaults['rate_limit_seconds'],
             'widget_title'           => isset( $input['widget_title'] ) ? sanitize_text_field( $input['widget_title'] ) : $defaults['widget_title'],
             'widget_subtitle'        => isset( $input['widget_subtitle'] ) ? sanitize_text_field( $input['widget_subtitle'] ) : $defaults['widget_subtitle'],
             'online_status'          => isset( $input['online_status'] ) ? sanitize_text_field( $input['online_status'] ) : $defaults['online_status'],
@@ -179,6 +185,29 @@ class NPLEADCHAT_Admin {
                         <th scope="row"><label for="npleadchat-success-message"><?php esc_html_e( 'Success Message', 'np-lead-chatbot' ); ?></label></th>
                         <td>
                             <input type="text" id="npleadchat-success-message" name="npleadchat_options[success_message]" class="regular-text" value="<?php echo esc_attr( $options['success_message'] ); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php esc_html_e( 'Email Notifications', 'np-lead-chatbot' ); ?></th>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="npleadchat_options[enable_notifications]" value="1" <?php checked( 1, $options['enable_notifications'] ); ?> />
+                                <?php esc_html_e( 'Send an email when a new lead is captured', 'np-lead-chatbot' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-notification-email"><?php esc_html_e( 'Notification Email', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="email" id="npleadchat-notification-email" name="npleadchat_options[notification_email]" class="regular-text" value="<?php echo esc_attr( $options['notification_email'] ); ?>" />
+                            <p class="description"><?php esc_html_e( 'Advanced templates and visitor auto-replies are available in PRO.', 'np-lead-chatbot' ); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="npleadchat-rate-limit-seconds"><?php esc_html_e( 'Spam Rate Limit', 'np-lead-chatbot' ); ?></label></th>
+                        <td>
+                            <input type="number" id="npleadchat-rate-limit-seconds" name="npleadchat_options[rate_limit_seconds]" class="small-text" min="10" max="3600" step="1" value="<?php echo esc_attr( $options['rate_limit_seconds'] ); ?>" />
+                            <?php esc_html_e( 'seconds between submissions from the same visitor/email.', 'np-lead-chatbot' ); ?>
                         </td>
                     </tr>
                 </table>

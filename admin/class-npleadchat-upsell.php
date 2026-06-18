@@ -103,7 +103,7 @@ class NPLEADCHAT_Upsell {
 				<ul class="npleadchat-upsell-benefits">
 					<li>&#x2705; <?php esc_html_e( 'Unlimited Leads', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Custom Field Builder', 'np-lead-chatbot' ); ?></li>
-					<li>&#x2705; <?php esc_html_e( 'Email Notifications', 'np-lead-chatbot' ); ?></li>
+					<li>&#x2705; <?php esc_html_e( 'Advanced Email Notifications', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Auto Replies', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Google reCAPTCHA v3 Spam Protection', 'np-lead-chatbot' ); ?></li>
 					<li>&#x2705; <?php esc_html_e( 'Full Appearance &amp; Branding Control', 'np-lead-chatbot' ); ?></li>
@@ -114,7 +114,7 @@ class NPLEADCHAT_Upsell {
 				</ul>
 
 				<p class="npleadchat-upsell-context">
-					<?php esc_html_e( 'Free already includes the floating widget, shortcode form, basic settings, lead source tracking, CSV export, and honeypot spam protection. PRO is best when you need automation, deeper customization, CRM workflow, analytics, and stronger anti-spam controls.', 'np-lead-chatbot' ); ?>
+					<?php esc_html_e( 'Free already includes the floating widget, shortcode form, basic settings, basic email notifications, lead source tracking, CSV export, and honeypot spam protection. PRO is best when you need automation, deeper customization, CRM workflow, analytics, and stronger anti-spam controls.', 'np-lead-chatbot' ); ?>
 				</p>
 
 				<hr>
@@ -180,8 +180,8 @@ class NPLEADCHAT_Upsell {
 							),
 							array(
 								esc_html__( 'Email Notifications',   'np-lead-chatbot' ),
-								'&#x274C;',
-								'&#x2705;',
+								esc_html__( 'Basic', 'np-lead-chatbot' ),
+								esc_html__( 'Advanced', 'np-lead-chatbot' ),
 							),
 							array(
 								esc_html__( 'Auto Replies',          'np-lead-chatbot' ),
@@ -329,7 +329,7 @@ class NPLEADCHAT_Upsell {
 				<?php
 				printf(
 					/* translators: 1: opening <strong> tag, 2: closing </strong> tag, 3: upgrade link HTML */
-					esc_html__( '%1$sLead Capture Chat PRO%2$s - unlock custom fields, email notifications, Google reCAPTCHA v3, unlimited leads, analytics, and more. %3$s', 'np-lead-chatbot' ),
+					esc_html__( '%1$sLead Capture Chat PRO%2$s - unlock custom fields, advanced email notifications, Google reCAPTCHA v3, unlimited leads, analytics, and more. %3$s', 'np-lead-chatbot' ),
 					'<strong>',
 					'</strong>',
 					sprintf(

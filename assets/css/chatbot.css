@@ -301,7 +301,7 @@
    FORM BODY
    ==================================================== */
 
-#wlc-chatbot {
+.nlc-chatbot {
     padding: 20px 20px 16px;
     background: var(--nlc-surface);
     font-family: var(--nlc-font);
@@ -322,9 +322,9 @@
     font-family: var(--nlc-font);
 }
 
-#wlc-chatbot input[type="text"],
-#wlc-chatbot input[type="email"],
-#wlc-chatbot textarea {
+.nlc-chatbot input[type="text"],
+.nlc-chatbot input[type="email"],
+.nlc-chatbot textarea {
     width: 100%;
     padding: 10px 13px;
     background: var(--nlc-surface-2);
@@ -342,27 +342,27 @@
     margin: 0;
 }
 
-#wlc-chatbot input[type="text"]::placeholder,
-#wlc-chatbot input[type="email"]::placeholder,
-#wlc-chatbot textarea::placeholder {
+.nlc-chatbot input[type="text"]::placeholder,
+.nlc-chatbot input[type="email"]::placeholder,
+.nlc-chatbot textarea::placeholder {
     color: #b5b2cc;
 }
 
-#wlc-chatbot input[type="text"]:focus,
-#wlc-chatbot input[type="email"]:focus,
-#wlc-chatbot textarea:focus {
+.nlc-chatbot input[type="text"]:focus,
+.nlc-chatbot input[type="email"]:focus,
+.nlc-chatbot textarea:focus {
     border-color: var(--nlc-primary-light);
     background: #fff;
     box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
 }
 
-#wlc-chatbot input.nlc-has-error,
-#wlc-chatbot textarea.nlc-has-error {
+.nlc-chatbot input.nlc-has-error,
+.nlc-chatbot textarea.nlc-has-error {
     border-color: var(--nlc-error);
     background: var(--nlc-error-bg);
 }
 
-#wlc-chatbot textarea {
+.nlc-chatbot textarea {
     resize: vertical;
     min-height: 78px;
 }
@@ -390,7 +390,7 @@
    SUBMIT BUTTON
    ==================================================== */
 
-#wlc-submit {
+.wlc-submit {
     width: 100%;
     padding: 12px 20px;
     background: linear-gradient(135deg, var(--nlc-primary) 0%, #6366f1 100%);
@@ -413,17 +413,17 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-#wlc-submit:hover {
+.wlc-submit:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(79,70,229,0.4);
 }
 
-#wlc-submit:active {
+.wlc-submit:active {
     transform: translateY(0) scale(0.98);
     box-shadow: none;
 }
 
-#wlc-submit:disabled {
+.wlc-submit:disabled {
     opacity: 0.65;
     cursor: not-allowed;
     transform: none;
@@ -445,14 +445,14 @@
     to { transform: rotate(360deg); }
 }
 
-#wlc-submit.is-loading .nlc-btn-text { display: none; }
-#wlc-submit.is-loading .nlc-spinner  { display: block; }
+.wlc-submit.is-loading .nlc-btn-text { display: none; }
+.wlc-submit.is-loading .nlc-spinner  { display: block; }
 
 /* ====================================================
    RESPONSE MESSAGE
    ==================================================== */
 
-#wlc-response {
+.wlc-response {
     margin-top: 12px;
     padding: 10px 13px;
     border-radius: var(--nlc-radius-sm);
@@ -470,14 +470,14 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-#wlc-response.nlc-success {
+.wlc-response.nlc-success {
     display: flex;
     background: var(--nlc-success-bg);
     color: #065f46;
     border: 1px solid #a7f3d0;
 }
 
-#wlc-response.nlc-error-msg {
+.wlc-response.nlc-error-msg {
     display: flex;
     background: var(--nlc-error-bg);
     color: #991b1b;

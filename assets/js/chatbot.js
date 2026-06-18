@@ -16,40 +16,44 @@ jQuery(document).ready(function ($) {
     function clearErrors($form) {
         $form.find('.wlc-error').text('');
         $form.find('.nlc-has-error').removeClass('nlc-has-error');
-        $form.find('#wlc-response').removeClass('nlc-success nlc-error-msg').hide();
+        $form.find('.wlc-response').removeClass('nlc-success nlc-error-msg').hide();
     }
 
-    function setError($form, fieldId, errorId, msg) {
-        $form.find('[id="' + fieldId + '"]').addClass('nlc-has-error');
-        $form.find('[id="' + errorId + '"]').text(msg);
+    function getField($form, fieldName) {
+        return $form.find('[data-nlc-field="' + fieldName + '"]');
+    }
+
+    function setError($form, fieldName, msg) {
+        getField($form, fieldName).addClass('nlc-has-error');
+        $form.find('[data-nlc-error="' + fieldName + '"]').text(msg);
     }
 
     function validateForm($form) {
         clearErrors($form);
         let isValid = true;
 
-        var name    = $form.find('[id="wlc-name"]').val().trim();
-        var email   = $form.find('[id="wlc-email"]').val().trim();
-        var phone   = $form.find('[id="wlc-phone"]').val().trim();
-        var message = $form.find('[id="wlc-message"]').val().trim();
+        var name    = getField($form, 'name').val().trim();
+        var email   = getField($form, 'email').val().trim();
+        var phone   = getField($form, 'phone').val().trim();
+        var message = getField($form, 'message').val().trim();
 
         if (!name) {
-            setError($form, 'wlc-name', 'wlc-name-error', strings.nameRequired);
+            setError($form, 'name', strings.nameRequired);
             isValid = false;
         }
         if (!email) {
-            setError($form, 'wlc-email', 'wlc-email-error', strings.emailRequired);
+            setError($form, 'email', strings.emailRequired);
             isValid = false;
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setError($form, 'wlc-email', 'wlc-email-error', strings.emailInvalid);
+            setError($form, 'email', strings.emailInvalid);
             isValid = false;
         }
         if (!phone) {
-            setError($form, 'wlc-phone', 'wlc-phone-error', strings.phoneRequired);
+            setError($form, 'phone', strings.phoneRequired);
             isValid = false;
         }
         if (!message) {
-            setError($form, 'wlc-message', 'wlc-message-error', strings.messageRequired);
+            setError($form, 'message', strings.messageRequired);
             isValid = false;
         }
 
@@ -57,7 +61,7 @@ jQuery(document).ready(function ($) {
     }
 
     function showResponse($form, msg, type) {
-        var $r = $form.find('#wlc-response');
+        var $r = $form.find('.wlc-response');
         var icon = type === 'success'
             ? '<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><circle cx="10" cy="10" r="9" fill="#10b981" opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#065f46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
             : '<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><circle cx="10" cy="10" r="9" fill="#ef4444" opacity=".2"/><path d="M10 6v5M10 14h.01" stroke="#991b1b" stroke-width="1.8" stroke-linecap="round"/></svg>';
@@ -73,10 +77,10 @@ jQuery(document).ready(function ($) {
     /* -----------------------------------------------
        Form submission
     ----------------------------------------------- */
-    $('[id="wlc-submit"]').on('click', function (e) {
+    $(document).on('click', '.wlc-submit', function (e) {
         e.preventDefault();
 
-        var $form = $(this).closest('#wlc-chatbot');
+        var $form = $(this).closest('.nlc-chatbot');
 
         if (!validateForm($form)) { return; }
 
@@ -84,12 +88,13 @@ jQuery(document).ready(function ($) {
         $btn.addClass('is-loading').prop('disabled', true);
 
         var data = {
-            name:       $form.find('[id="wlc-name"]').val(),
-            email:      $form.find('[id="wlc-email"]').val(),
-            phone:      $form.find('[id="wlc-phone"]').val(),
-            message:    $form.find('[id="wlc-message"]').val(),
-            source_url: window.location.href,
-            website:    $form.find('[id="wlc-website"]').val()
+            name:            getField($form, 'name').val(),
+            email:           getField($form, 'email').val(),
+            phone:           getField($form, 'phone').val(),
+            message:         getField($form, 'message').val(),
+            source_url:      window.location.href,
+            website:         getField($form, 'website').val(),
+            form_started_at: getField($form, 'form_started_at').val()
         };
 
         $.ajax({
@@ -101,8 +106,17 @@ jQuery(document).ready(function ($) {
                 xhr.setRequestHeader('X-WP-Nonce', api.nonce);
             },
             success: function (res) {
-                showResponse($form, res.message || api.successMessage || strings.fallbackSuccess, 'success');
-                $form.find('[id="wlc-name"], [id="wlc-email"], [id="wlc-phone"], [id="wlc-message"], [id="wlc-website"]').val('');
+                var isSuccess = !res || res.success !== false;
+                showResponse($form, res.message || api.successMessage || strings.fallbackSuccess, isSuccess ? 'success' : 'error');
+
+                if (isSuccess) {
+                    getField($form, 'name').val('');
+                    getField($form, 'email').val('');
+                    getField($form, 'phone').val('');
+                    getField($form, 'message').val('');
+                    getField($form, 'website').val('');
+                    getField($form, 'form_started_at').val(Math.floor(Date.now() / 1000));
+                }
             },
             error: function () {
                 showResponse($form, strings.fallbackError, 'error');
@@ -116,10 +130,10 @@ jQuery(document).ready(function ($) {
     /* -----------------------------------------------
        Remove error state on input
     ----------------------------------------------- */
-    $(document).on('input', '[id="wlc-chatbot"] input, [id="wlc-chatbot"] textarea', function () {
+    $(document).on('input', '.nlc-chatbot input, .nlc-chatbot textarea', function () {
         $(this).removeClass('nlc-has-error');
-        var errorId = $(this).attr('id') + '-error';
-        $(this).closest('[id="wlc-chatbot"]').find('[id="' + errorId + '"]').text('');
+        var fieldName = $(this).data('nlc-field');
+        $(this).closest('.nlc-chatbot').find('[data-nlc-error="' + fieldName + '"]').text('');
     });
 
     /* -----------------------------------------------
@@ -144,7 +158,7 @@ jQuery(document).ready(function ($) {
         $popup.removeClass('nlc-closing').show().addClass('nlc-open');
         $trigBtn.addClass('is-open');
         // Focus first input for accessibility
-        setTimeout(function () { $popup.find('[id="wlc-name"]').trigger('focus'); }, 320);
+        setTimeout(function () { $popup.find('[data-nlc-field="name"]').trigger('focus'); }, 320);
     }
 
     function closePopup() {
