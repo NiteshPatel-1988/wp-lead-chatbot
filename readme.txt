@@ -17,7 +17,7 @@ Lead generation chat widget for WordPress with a floating contact form and built
 No third-party services. No monthly SaaS fees. No data leaves your server.
 
 🚀 **[PRO Features Preview](https://leadcapturechat.netlify.app/)**
-🎥 **[Watch the PRO Demo Video](https://www.youtube.com/watch?v=J-u0IBZRyaI&t=4s)**
+🎥 **[Watch the PRO Demo Video](https://www.youtube.com/watch?v=epYfHjLN5dE)**
 🔥 **[Upgrade to WP LeadChat Pro](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
