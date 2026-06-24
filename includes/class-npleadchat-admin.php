@@ -259,10 +259,13 @@ class NPLEADCHAT_Admin {
             return (array) $lead;
         }, $leads );
 
+        header( 'X-Content-Type-Options: nosniff' );
         header( 'Content-Type: text/csv; charset=utf-8' );
         header( 'Content-Disposition: attachment; filename=npleadchat-leads-' . gmdate( 'Y-m-d' ) . '.csv' );
         header( 'Pragma: no-cache' );
         header( 'Expires: 0' );
+        header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0' );
+        header( 'X-Frame-Options: DENY' );
 
         $output = fopen( 'php://output', 'w' );
         fputcsv( $output, array_keys( $leads[0] ) );

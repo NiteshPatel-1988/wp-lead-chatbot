@@ -4,7 +4,7 @@ Tags:              lead generation, chat widget, contact form, leads, lead track
 Requires at least: 6.0
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        2.3.4
+Stable tag:        2.4.0
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -213,16 +213,26 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 
 1. The floating chat widget - gradient header, avatar, animated popup, modern form fields, and a success message
 2. Leads dashboard - view, search, sort, and bulk-delete all captured leads inside WP Admin
-3. **PRO: Leads dashboard (CRM)** - the upgraded leads table with status badges, notes preview pills, Last Activity column, pipeline stats bar, status filter tabs, and date range filter
-4. **PRO: Status dropdown** - clicking a status badge opens the custom dropdown; selecting a new status saves instantly via AJAX and updates the badge colour in place
-5. **PRO: Lead detail modal - Notes tab** - the full notes activity log showing all notes newest-first with absolute timestamps, a delete button per note, and a clear empty state directing users to the inline quick-note
-6. **PRO: Analytics dashboard** - the full analytics page showing the KPI summary strip, Leads Over Time bar chart, Conversion Rate Trend line chart, Pipeline Funnel, and Top Source Pages table
-7. **PRO: Settings + live preview** - the full settings panel showing colour pickers, avatar upload, field toggles, and the live preview sidebar updating in real time as you type
-8. **PRO: Custom Field Builder + Spam Protection + Email notifications** - Drag-and-drop custom fields with Text, Dropdown, Checkbox & more, reorderable rows, spam protection and email notification
+3. Settings dashboard - customize widget content, configure email notifications, enable the floating widget, and manage spam protection settings.
+4. **PRO: Leads dashboard (CRM)** - the upgraded leads table with status badges, notes preview pills, Last Activity column, pipeline stats bar, status filter tabs, and date range filter
+5. **PRO: Status dropdown** - clicking a status badge opens the custom dropdown; selecting a new status saves instantly via AJAX and updates the badge colour in place
+6. **PRO: Lead detail modal - Notes tab** - the full notes activity log showing all notes newest-first with absolute timestamps, a delete button per note, and a clear empty state directing users to the inline quick-note
+7. **PRO: Analytics dashboard** - the full analytics page showing the KPI summary strip, Leads Over Time bar chart, Conversion Rate Trend line chart, Pipeline Funnel, and Top Source Pages table
+8. **PRO: Settings + live preview** - the full settings panel showing colour pickers, avatar upload, field toggles, and the live preview sidebar updating in real time as you type
+9. **PRO: Custom Field Builder + Spam Protection + Email notifications** - Drag-and-drop custom fields with Text, Dropdown, Checkbox & more, reorderable rows, spam protection and email notification
 
 ---
 
 == Changelog ==
+
+= 2.4.0 - Security & GDPR Enhancement =
+* Added: Comprehensive phone number format validation (digits, spaces, hyphens, +, parentheses, periods)
+* Added: Full GDPR/Privacy compliance support with WordPress privacy export/erase hooks
+* Improved: REST API nonce header handling for better compatibility (supports both x-wp-nonce and X-WP-Nonce)
+* Improved: Email content sanitization - all user data properly escaped before email delivery
+* Improved: CSV export with enhanced security headers
+* Enhanced: REST API error handling with proper WP_Error responses and HTTP status codes
+* Added: Rate limit management function for admin testing and debugging
 
 = 2.3.4 =
 * Added basic admin email notifications with recipient setting
@@ -308,6 +318,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Upgrade Notice ==
+
+= 2.4.0 =
+Security and GDPR enhancement release with phone validation, improved nonce compatibility, safer email sanitization, and secure CSV export.
 
 = 2.3.4 =
 Adds basic admin email notifications, spam cooldown protection, duplicate submission protection, and safer multi-instance form markup.

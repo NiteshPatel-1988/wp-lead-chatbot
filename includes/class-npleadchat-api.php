@@ -25,10 +25,33 @@ class NPLEADCHAT_API {
         ) );
     }
 
+    /**
+     * IMPROVEMENT: Better nonce header handling with fallback
+     * Handles both lowercase and uppercase header names for maximum compatibility
+     */
     public static function npleadchat_permission_check( $request ) {
-        $nonce = sanitize_text_field( $request->get_header( 'x_wp_nonce' ) );
+        // Try both common header name formats
+        $nonce = $request->get_header( 'x-wp-nonce' ) ?: $request->get_header( 'X-WP-Nonce' );
+        
+        if ( empty( $nonce ) ) {
+            return new WP_Error(
+                'rest_nonce_missing',
+                __( 'Nonce missing in request.', 'np-lead-chatbot' ),
+                array( 'status' => 403 )
+            );
+        }
 
-        return wp_verify_nonce( $nonce, 'wp_rest' );
+        $nonce = sanitize_text_field( wp_unslash( $nonce ) );
+        
+        if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+            return new WP_Error(
+                'rest_nonce_invalid',
+                __( 'Nonce verification failed.', 'np-lead-chatbot' ),
+                array( 'status' => 403 )
+            );
+        }
+
+        return true;
     }
 
     private static function npleadchat_success_message() {
@@ -68,6 +91,26 @@ class NPLEADCHAT_API {
         );
     }
 
+    /**
+     * IMPROVEMENT: Validate phone number format
+     * Allows digits, spaces, hyphens, plus signs, parentheses, and periods (common phone formats)
+     *
+     * @param string $phone Phone number to validate
+     * @return bool True if valid or empty, false otherwise
+     */
+    private static function npleadchat_validate_phone( $phone ) {
+        if ( empty( $phone ) ) {
+            return true; // Phone is optional
+        }
+
+        // Allow digits, spaces, hyphens, plus signs, parentheses, and periods
+        if ( ! preg_match( '/^[\d\s\-\+\(\)\.x]+$/i', $phone ) ) {
+            return false;
+        }
+
+        return true;
+    }
+
     private static function npleadchat_send_notification( array $data, $lead_id ) {
         $options = NPLEADCHAT_Admin::npleadchat_get_options();
 
@@ -82,33 +125,34 @@ class NPLEADCHAT_API {
             $site_name
         );
 
+        // IMPROVED: Better sanitization of user input in email body
         $body = sprintf(
             "%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n",
             __( 'A new lead was captured by Lead Capture Chat.', 'np-lead-chatbot' ),
             sprintf(
                 /* translators: %s: lead name */
                 __( 'Name: %s', 'np-lead-chatbot' ),
-                $data['name']
+                sanitize_text_field( $data['name'] )
             ),
             sprintf(
                 /* translators: %s: lead email */
                 __( 'Email: %s', 'np-lead-chatbot' ),
-                $data['email']
+                sanitize_email( $data['email'] )
             ),
             sprintf(
                 /* translators: %s: lead phone */
                 __( 'Phone: %s', 'np-lead-chatbot' ),
-                $data['phone']
+                sanitize_text_field( $data['phone'] )
             ),
             sprintf(
                 /* translators: %s: lead message */
                 __( 'Message: %s', 'np-lead-chatbot' ),
-                $data['message']
+                sanitize_textarea_field( $data['message'] )
             ),
             sprintf(
                 /* translators: %s: source URL */
                 __( 'Source: %s', 'np-lead-chatbot' ),
-                $data['source_url']
+                esc_url_raw( $data['source_url'] )
             ),
             sprintf(
                 /* translators: %s: admin leads URL */
@@ -149,6 +193,11 @@ class NPLEADCHAT_API {
             return rest_ensure_response( array( 'success' => false, 'message' => __( 'Please enter a valid email address.', 'np-lead-chatbot' ) ) );
         }
 
+        // IMPROVEMENT: Validate phone format
+        if ( ! self::npleadchat_validate_phone( $phone ) ) {
+            return rest_ensure_response( array( 'success' => false, 'message' => __( 'Please enter a valid phone number.', 'np-lead-chatbot' ) ) );
+        }
+
         $rate_limit_key = self::npleadchat_rate_limit_key( $email );
         if ( get_transient( $rate_limit_key ) ) {
             return rest_ensure_response( array( 'success' => false, 'message' => __( 'Please wait a moment before sending another message.', 'np-lead-chatbot' ) ) );
@@ -175,9 +224,28 @@ class NPLEADCHAT_API {
             set_transient( $duplicate_key, 1, self::DUPLICATE_WINDOW );
             self::npleadchat_send_notification( $data, $id );
 
-            return rest_ensure_response( array( 'success' => true, 'message' => self::npleadchat_success_message(), 'id' => $id ) );
+            return rest_ensure_response( array( 'success' => true, 'message' => self::npleadchat_success_message() ) );
         }
 
         return rest_ensure_response( array( 'success' => false, 'message' => __( 'Could not save lead', 'np-lead-chatbot' ) ) );
+    }
+
+    /**
+     * IMPROVEMENT: Admin function to clear rate limits (for debugging/testing)
+     * Only available to administrators
+     */
+    public static function npleadchat_clear_rate_limits() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die( esc_html__( 'Insufficient permissions.', 'np-lead-chatbot' ) );
+        }
+
+        global $wpdb;
+        $wpdb->query(
+            $wpdb->prepare(
+                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+                'npleadchat_rate_%',
+                'npleadchat_dup_%'
+            )
+        );
     }
 }

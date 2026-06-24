@@ -6,7 +6,7 @@
  * admin notice. All output is escaped per WordPress.org coding standards.
  *
  * @package NP_Lead_Chatbot
- * @since   2.3.0
+ * @since   2.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

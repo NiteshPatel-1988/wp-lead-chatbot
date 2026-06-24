@@ -2,7 +2,7 @@
 
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
-![Version](https://img.shields.io/badge/Version-2.3.4-orange)
+![Version](https://img.shields.io/badge/Version-2.4.0-orange)
 ![License](https://img.shields.io/badge/License-GPLv2-green)
 
 A modern floating lead capture chat widget for WordPress. Collect visitor leads directly on your site and manage everything inside your WordPress dashboard - no SaaS, no monthly dependency, no data leaving your server.
@@ -45,7 +45,46 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 
 ---
 
-## 🚀 PRO Features
+## � Security Features (v2.4.0+)
+
+### Enhanced Input Validation
+- ✅ Phone number format validation (digits, spaces, hyphens, +, parentheses, periods)
+- ✅ Email format verification
+- ✅ Textarea field sanitization
+- ✅ URL validation and escaping
+
+### Improved REST API Security
+- ✅ Better nonce header handling (supports multiple header formats)
+- ✅ Proper error responses with HTTP status codes
+- ✅ Enhanced permission checks with clear error messages
+
+### Email Security
+- ✅ All email content properly sanitized
+- ✅ User data escaped before email delivery
+- ✅ Prevents content injection attacks
+
+### Download Security
+- ✅ MIME type sniffing prevention (`X-Content-Type-Options: nosniff`)
+- ✅ Proper cache control headers
+- ✅ Clickjacking protection (`X-Frame-Options: DENY`)
+- ✅ Safe CSV export with injection prevention
+
+### GDPR/Privacy Compliance
+- ✅ Full privacy data export support (WordPress Tools > Privacy)
+- ✅ Complete data erasure support (right to be forgotten)
+- ✅ Integrated with WordPress privacy requests
+- ✅ GDPR-compliant lead management
+
+### Additional Security
+- ✅ Rate limiting & spam protection
+- ✅ Honeypot field for bot detection
+- ✅ Duplicate submission prevention
+- ✅ SQL injection prevention with prepared statements
+- ✅ XSS prevention with proper escaping
+
+---
+
+## �🚀 PRO Features
 
 ### Lead Capture
 - Unlimited leads - no cap
@@ -182,6 +221,15 @@ Embeds the lead form inline anywhere - pages, posts, or widget areas.
 ---
 
 ## Changelog
+
+### 2.4.0 - Security & GDPR Enhancement
+- **Added** comprehensive phone number format validation (digits, spaces, hyphens, +, parentheses, periods)
+- **Added** full GDPR/Privacy compliance support with WordPress privacy export/erase hooks
+- **Improved** REST API nonce header handling for better compatibility (supports both `x-wp-nonce` and `X-WP-Nonce`)
+- **Improved** email content sanitization - all user data properly escaped before email delivery
+- **Improved** CSV export with enhanced security headers 
+- **Enhanced** REST API error handling with proper WP_Error responses and HTTP status codes
+- **Added** rate limit management function for admin testing and debugging
 
 ### 2.3.4
 - Added basic admin email notifications with recipient setting
