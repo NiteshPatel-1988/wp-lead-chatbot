@@ -14,7 +14,7 @@ A modern floating lead capture chat widget for WordPress. Collect visitor leads 
 | | |
 |---|---|
 | 🌐 Live Demo & PRO Preview | https://leadcapturechat.netlify.app/ |
-| 🎥 Watch the PRO Demo | https://www.youtube.com/watch?v=LFD65u6pn34 |
+| 🎥 Watch the PRO Demo | https://www.youtube.com/watch?v=J-u0IBZRyaI&t=4s |
 | 🚀 Upgrade to PRO | https://checkout.freemius.com/plugin/29207/plan/48049/ |
 | 🔌 WordPress.org Plugin Page | https://wordpress.org/plugins/np-lead-chatbot/ |
 
