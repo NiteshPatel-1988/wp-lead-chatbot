@@ -4,7 +4,7 @@ Tags:              lead generation, chat widget, contact form, leads, lead track
 Requires at least: 6.0
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        2.4.0
+Stable tag:        2.4.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ Lead generation chat widget for WordPress with a floating contact form and built
 No third-party services. No monthly SaaS fees. No data leaves your server.
 
 🚀 **[PRO Features Preview](https://leadcapturechat.netlify.app/)**
-🎥 **[Watch the PRO Demo Video](https://www.youtube.com/watch?v=epYfHjLN5dE)**
+🎥 **[Watch the PRO Demo Video](https://www.youtube.com/watch?v=J-u0IBZRyaI)**
 🔥 **[Upgrade to WP LeadChat Pro](https://checkout.freemius.com/plugin/29207/plan/48049/)**
 
 ---
@@ -225,6 +225,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 
 == Changelog ==
 
+= 2.4.1 =
+* Changed demo video url
+
 = 2.4.0 - Security & GDPR Enhancement =
 * Added: Comprehensive phone number format validation (digits, spaces, hyphens, +, parentheses, periods)
 * Added: Full GDPR/Privacy compliance support with WordPress privacy export/erase hooks
@@ -318,6 +321,9 @@ WP LeadChat Pro is the premium version that unlocks unlimited leads, custom fiel
 ---
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+ Changed demo video url
 
 = 2.4.0 =
 Security and GDPR enhancement release with phone validation, improved nonce compatibility, safer email sanitization, and secure CSV export.
