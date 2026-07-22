@@ -2,7 +2,7 @@
 
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
-![Version](https://img.shields.io/badge/Version-2.4.0-orange)
+![Version](https://img.shields.io/badge/Version-2.4.2-orange)
 ![License](https://img.shields.io/badge/License-GPLv2-green)
 
 A modern floating lead capture chat widget for WordPress. Collect visitor leads directly on your site and manage everything inside your WordPress dashboard - no SaaS, no monthly dependency, no data leaving your server.
@@ -221,6 +221,9 @@ Embeds the lead form inline anywhere - pages, posts, or widget areas.
 ---
 
 ## Changelog
+
+### 2.4.2
+- **Added** full GDPR compliance support - captured leads are now included in WordPress's built-in Tools → Export Personal Data and Erase Personal Data requests.
 
 ### 2.4.1
 - Changed demo video url
