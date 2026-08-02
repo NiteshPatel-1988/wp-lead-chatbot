@@ -20,7 +20,7 @@ class NPLEADCHAT_Admin {
 
     public static function npleadchat_enqueue( $hook ) {
         // Only load on our own admin page.
-        if ( ! in_array( $hook, array( 'toplevel_page_npleadchat-leads', 'np-lead-chatbot_page_npleadchat-settings' ), true ) ) {
+        if ( ! in_array( $hook, array( 'toplevel_page_npleadchat-leads', 'npleadchat-leads_page_npleadchat-settings' ), true ) ) {
             return;
         }
         wp_enqueue_style(

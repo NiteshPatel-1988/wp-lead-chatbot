@@ -311,7 +311,7 @@ class NPLEADCHAT_Upsell {
 
 		// Don't show on our own upsell page — redundant.
 		$screen = get_current_screen();
-		if ( $screen && 'nplead-chatbot_page_npleadchat-upgrade' === $screen->id ) {
+		if ( $screen && 'npleadchat-leads_page_npleadchat-upgrade' === $screen->id ) {
 			return;
 		}
 
